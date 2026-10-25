@@ -1,0 +1,43 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Gerät hinzufügen",
+        "description": "Ist ein Preissensor gewählt, hat er Vorrang. Ohne Sensor gilt der manuelle Wert.",
+        "data": {
+          "name": "Name des Geräts",
+          "device_entity": "Leistungssensor des Geräts (W)",
+          "solar_entity": "Solar-Leistung fürs Haus (W)",
+          "battery_entity": "Batterie-Entladeleistung (W)",
+          "grid_entity": "Netzbezug-Leistung (W)",
+          "battery_invert": "Batterie-Vorzeichen umkehren (Laden = positiv)",
+          "grid_invert": "Netz-Vorzeichen umkehren (Einspeisen = positiv)",
+          "price_entity": "Bezugspreis: Sensor (optional)",
+          "price_manual": "Bezugspreis: manueller Wert",
+          "feed_entity": "Einspeisevergütung: Sensor (optional)",
+          "feed_manual": "Einspeisevergütung: manueller Wert"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Einstellungen",
+        "description": "Ist ein Preissensor gewählt, hat er Vorrang. Ohne Sensor gilt der manuelle Wert.",
+        "data": {
+          "device_entity": "Leistungssensor des Geräts (W)",
+          "solar_entity": "Solar-Leistung fürs Haus (W)",
+          "battery_entity": "Batterie-Entladeleistung (W)",
+          "grid_entity": "Netzbezug-Leistung (W)",
+          "battery_invert": "Batterie-Vorzeichen umkehren (Laden = positiv)",
+          "grid_invert": "Netz-Vorzeichen umkehren (Einspeisen = positiv)",
+          "price_entity": "Bezugspreis: Sensor (optional)",
+          "price_manual": "Bezugspreis: manueller Wert",
+          "feed_entity": "Einspeisevergütung: Sensor (optional)",
+          "feed_manual": "Einspeisevergütung: manueller Wert"
+        }
+      }
+    }
+  }
+}

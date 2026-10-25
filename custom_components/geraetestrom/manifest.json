@@ -1,0 +1,12 @@
+{
+  "domain": "geraetestrom",
+  "name": "Gerätestrom",
+  "codeowners": ["@DEIN_GITHUB_NAME"],
+  "config_flow": true,
+  "documentation": "https://github.com/DEIN_GITHUB_NAME/geraetestrom",
+  "integration_type": "service",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/DEIN_GITHUB_NAME/geraetestrom/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}

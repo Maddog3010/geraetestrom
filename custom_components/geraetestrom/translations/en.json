@@ -1,0 +1,43 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add device",
+        "description": "A selected price sensor takes priority; otherwise the manual value is used.",
+        "data": {
+          "name": "Device name",
+          "device_entity": "Device power sensor (W)",
+          "solar_entity": "Solar power to house (W)",
+          "battery_entity": "Battery discharge power (W)",
+          "grid_entity": "Grid import power (W)",
+          "battery_invert": "Invert battery sign (charging = positive)",
+          "grid_invert": "Invert grid sign (export = positive)",
+          "price_entity": "Import price: sensor (optional)",
+          "price_manual": "Import price: manual value",
+          "feed_entity": "Feed-in tariff: sensor (optional)",
+          "feed_manual": "Feed-in tariff: manual value"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Settings",
+        "description": "A selected price sensor takes priority; otherwise the manual value is used.",
+        "data": {
+          "device_entity": "Device power sensor (W)",
+          "solar_entity": "Solar power to house (W)",
+          "battery_entity": "Battery discharge power (W)",
+          "grid_entity": "Grid import power (W)",
+          "battery_invert": "Invert battery sign (charging = positive)",
+          "grid_invert": "Invert grid sign (export = positive)",
+          "price_entity": "Import price: sensor (optional)",
+          "price_manual": "Import price: manual value",
+          "feed_entity": "Feed-in tariff: sensor (optional)",
+          "feed_manual": "Feed-in tariff: manual value"
+        }
+      }
+    }
+  }
+}

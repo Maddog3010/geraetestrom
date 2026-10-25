@@ -1,0 +1,34 @@
+# Ansicht mit 3 Geräten: Desktop nebeneinander, Mobil untereinander.
+# Entity-Namen an deine Gerätenamen anpassen (Umlaute werden zu einfachen Buchstaben).
+title: Geräte
+path: geraete
+type: sections
+max_columns: 3
+sections:
+  - type: grid
+    cards:
+      - {type: heading, heading: Waschmaschine, icon: "mdi:washing-machine"}
+      - {type: tile, entity: sensor.waschmaschine_solar_anteil,    name: Solar,    color: yellow, grid_options: {columns: 4}}
+      - {type: tile, entity: sensor.waschmaschine_batterie_anteil, name: Batterie, color: green,  grid_options: {columns: 4}}
+      - {type: tile, entity: sensor.waschmaschine_netz_anteil,     name: Netz,     color: indigo, grid_options: {columns: 4}}
+      - {type: gauge, entity: sensor.waschmaschine_eigenversorgung, name: Eigener Strom, min: 0, max: 100, severity: {red: 0, yellow: 30, green: 60}}
+      - {type: tile, entity: sensor.waschmaschine_kosten,    name: Kosten,    grid_options: {columns: 6}}
+      - {type: tile, entity: sensor.waschmaschine_ersparnis, name: Ersparnis, color: green, grid_options: {columns: 6}}
+  - type: grid
+    cards:
+      - {type: heading, heading: Trockner, icon: "mdi:tumble-dryer"}
+      - {type: tile, entity: sensor.trockner_solar_anteil,    name: Solar,    color: yellow, grid_options: {columns: 4}}
+      - {type: tile, entity: sensor.trockner_batterie_anteil, name: Batterie, color: green,  grid_options: {columns: 4}}
+      - {type: tile, entity: sensor.trockner_netz_anteil,     name: Netz,     color: indigo, grid_options: {columns: 4}}
+      - {type: gauge, entity: sensor.trockner_eigenversorgung, name: Eigener Strom, min: 0, max: 100, severity: {red: 0, yellow: 30, green: 60}}
+      - {type: tile, entity: sensor.trockner_kosten,    name: Kosten,    grid_options: {columns: 6}}
+      - {type: tile, entity: sensor.trockner_ersparnis, name: Ersparnis, color: green, grid_options: {columns: 6}}
+  - type: grid
+    cards:
+      - {type: heading, heading: Spülmaschine, icon: "mdi:dishwasher"}
+      - {type: tile, entity: sensor.spulmaschine_solar_anteil,    name: Solar,    color: yellow, grid_options: {columns: 4}}
+      - {type: tile, entity: sensor.spulmaschine_batterie_anteil, name: Batterie, color: green,  grid_options: {columns: 4}}
+      - {type: tile, entity: sensor.spulmaschine_netz_anteil,     name: Netz,     color: indigo, grid_options: {columns: 4}}
+      - {type: gauge, entity: sensor.spulmaschine_eigenversorgung, name: Eigener Strom, min: 0, max: 100, severity: {red: 0, yellow: 30, green: 60}}
+      - {type: tile, entity: sensor.spulmaschine_kosten,    name: Kosten,    grid_options: {columns: 6}}
+      - {type: tile, entity: sensor.spulmaschine_ersparnis, name: Ersparnis, color: green, grid_options: {columns: 6}}
