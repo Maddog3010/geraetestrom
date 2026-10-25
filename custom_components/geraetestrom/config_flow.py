@@ -30,6 +30,9 @@ def _schema(hass, d: dict, with_name: bool) -> vol.Schema:
         s[vol.Required(CONF_NAME, default="Waschmaschine")] = str
     for k in (CONF_DEVICE, CONF_SOLAR, CONF_BATTERY, CONF_GRID):
         s[vol.Required(k, description=sug(k))] = ent
+    for k in (CONF_SOLAR2, CONF_BAT_CHARGE, CONF_EXPORT):
+        s[vol.Optional(k, description=sug(k))] = ent
+    s[vol.Optional(CONF_SOLAR_TOTAL, default=d.get(CONF_SOLAR_TOTAL, False))] = bool
     s[vol.Optional(CONF_BAT_INV, default=d.get(CONF_BAT_INV, False))] = bool
     s[vol.Optional(CONF_GRID_INV, default=d.get(CONF_GRID_INV, False))] = bool
     s[vol.Optional(CONF_PRICE_ENT, description=sug(CONF_PRICE_ENT))] = ent

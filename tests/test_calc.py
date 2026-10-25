@@ -47,3 +47,11 @@ def test_normalize_services():
     assert calc.normalize_services("notify.mobile_app_pixel") == [("notify", "mobile_app_pixel")]
     assert calc.normalize_services("mobile_app_pixel") == [("notify", "mobile_app_pixel")]
     assert calc.normalize_services(["notify.a", " notify.b ", "notify.a", ""]) == [("notify", "a"), ("notify", "b")]
+
+
+def test_solar_for_house():
+    assert calc.solar_for_house(1800, 900) == 2700
+    assert calc.solar_for_house(1800, 900, charge=600, export=200) == 2700  # ohne "total" kein Abzug
+    assert calc.solar_for_house(1800, 900, charge=600, export=200, total=True) == 1900
+    assert calc.solar_for_house(500, 0, charge=600, total=True) == 0
+    assert calc.solar_for_house(-5, 0) == 0

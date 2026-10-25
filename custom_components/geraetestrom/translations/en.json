@@ -20,7 +20,11 @@
           "forecast_entity": "Solar forecast sensor in W (optional)",
           "notify_service": "Notify services (select one or more)",
           "run_threshold_w": "Run starts above (W)",
-          "run_end_minutes": "Run ends after (minutes below threshold)"
+          "run_end_minutes": "Run ends after (minutes below threshold)",
+          "solar2_entity": "Second solar power in W (optional)",
+          "battery_charge_entity": "Battery charge power in W (optional)",
+          "export_entity": "Grid export power in W (optional)",
+          "solar_total": "Solar sensors report total production (subtract charging and export)"
         }
       }
     }
@@ -45,7 +49,11 @@
           "forecast_entity": "Solar forecast sensor in W (optional)",
           "notify_service": "Notify services (select one or more)",
           "run_threshold_w": "Run starts above (W)",
-          "run_end_minutes": "Run ends after (minutes below threshold)"
+          "run_end_minutes": "Run ends after (minutes below threshold)",
+          "solar2_entity": "Second solar power in W (optional)",
+          "battery_charge_entity": "Battery charge power in W (optional)",
+          "export_entity": "Grid export power in W (optional)",
+          "solar_total": "Solar sensors report total production (subtract charging and export)"
         }
       }
     }

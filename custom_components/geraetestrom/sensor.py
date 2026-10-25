@@ -18,6 +18,7 @@ SENSORS = [
     ("solar_w", "Solar-Anteil", W, DC.POWER, M, lambda e: e.w["solar"], None, None),
     ("battery_w", "Batterie-Anteil", W, DC.POWER, M, lambda e: e.w["battery"], None, None),
     ("grid_w", "Netz-Anteil", W, DC.POWER, M, lambda e: e.w["grid"], None, None),
+    ("solar_house", "Solarleistung fürs Haus", W, DC.POWER, M, lambda e: e.solar_house, None, None),
     ("solar_kwh", "Solar-Energie", KWH, DC.ENERGY, TI, lambda e: e.e["solar"], ("e", "solar"), None),
     ("battery_kwh", "Batterie-Energie", KWH, DC.ENERGY, TI, lambda e: e.e["battery"], ("e", "battery"), None),
     ("grid_kwh", "Netz-Energie", KWH, DC.ENERGY, TI, lambda e: e.e["grid"], ("e", "grid"), None),

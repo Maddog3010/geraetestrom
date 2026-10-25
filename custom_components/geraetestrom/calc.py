@@ -22,6 +22,18 @@ def money(d_kwh: float, source: str, price: float, feed: float, bat_cost: float)
     return 0.0, d_kwh * (price - bat_cost)
 
 
+def solar_for_house(s1: float, s2: float, charge: float = 0.0, export: float = 0.0, total: bool = False) -> float:
+    """Solarleistung fürs Haus aus einer oder zwei Quellen.
+
+    Melden die Sensoren die Gesamterzeugung (total), werden Batterie-Ladeleistung
+    und Einspeisung ins Netz abgezogen.
+    """
+    s = max(s1, 0.0) + max(s2, 0.0)
+    if not total:
+        return s
+    return max(s - max(charge, 0.0) - max(export, 0.0), 0.0)
+
+
 def free_solar(estimate_w: float, others_solar_w: float) -> float:
     """Solarleistung, die nach Abzug dessen übrig bleibt, was andere Geräte schon nutzen."""
     return max(estimate_w - max(others_solar_w, 0.0), 0.0)

@@ -20,7 +20,11 @@
           "forecast_entity": "Solarprognose-Sensor in W (optional, z. B. Forecast.Solar „nächste Stunde“)",
           "notify_service": "Benachrichtigungsdienste (Auswahl, mehrere möglich)",
           "run_threshold_w": "Durchlauf startet ab (W)",
-          "run_end_minutes": "Durchlauf endet nach (Minuten unter Schwelle)"
+          "run_end_minutes": "Durchlauf endet nach (Minuten unter Schwelle)",
+          "solar2_entity": "Zweite Solarleistung in W (optional)",
+          "battery_charge_entity": "Batterie-Ladeleistung in W (optional)",
+          "export_entity": "Netzeinspeisung in W (optional)",
+          "solar_total": "Solarsensoren melden die Gesamterzeugung (Ladung und Einspeisung abziehen)"
         }
       }
     }
@@ -45,7 +49,11 @@
           "forecast_entity": "Solarprognose-Sensor in W (optional, z. B. Forecast.Solar „nächste Stunde“)",
           "notify_service": "Benachrichtigungsdienste (Auswahl, mehrere möglich)",
           "run_threshold_w": "Durchlauf startet ab (W)",
-          "run_end_minutes": "Durchlauf endet nach (Minuten unter Schwelle)"
+          "run_end_minutes": "Durchlauf endet nach (Minuten unter Schwelle)",
+          "solar2_entity": "Zweite Solarleistung in W (optional)",
+          "battery_charge_entity": "Batterie-Ladeleistung in W (optional)",
+          "export_entity": "Netzeinspeisung in W (optional)",
+          "solar_total": "Solarsensoren melden die Gesamterzeugung (Ladung und Einspeisung abziehen)"
         }
       }
     }

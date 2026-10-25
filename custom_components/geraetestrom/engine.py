@@ -8,7 +8,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send
 from homeassistant.helpers.event import async_track_state_change_event, async_track_time_interval
 from homeassistant.util import dt as dt_util
 
-from .calc import SOURCES, advice, cover_pct, free_solar, money, normalize_services, split_power
+from .calc import SOURCES, advice, cover_pct, free_solar, money, normalize_services, solar_for_house, split_power
 from .const import *
 
 DEFAULT_TYPICAL_W = 1500.0
@@ -34,6 +34,7 @@ class Engine:
         self.g = 0.0
         self.cover = 0.0
         self._est = 0.0
+        self.solar_house = 0.0
         self.run: dict | None = None
         self.idle = None
         self.runs = 0
@@ -103,9 +104,14 @@ class Engine:
 
     def _calc(self) -> None:
         self.g = max(self._power(self.cfg[CONF_DEVICE]), 0)
-        s = self._power(self.cfg[CONF_SOLAR])
         b = self._power(self.cfg[CONF_BATTERY]) * (-1 if self.cfg.get(CONF_BAT_INV) else 1)
         n = self._power(self.cfg[CONF_GRID]) * (-1 if self.cfg.get(CONF_GRID_INV) else 1)
+        charge = self._power(self.cfg[CONF_BAT_CHARGE]) if self.cfg.get(CONF_BAT_CHARGE) else max(-b, 0)
+        export = self._power(self.cfg[CONF_EXPORT]) if self.cfg.get(CONF_EXPORT) else max(-n, 0)
+        s = solar_for_house(
+            self._power(self.cfg[CONF_SOLAR]), self._power(self.cfg.get(CONF_SOLAR2)),
+            charge, export, bool(self.cfg.get(CONF_SOLAR_TOTAL)))
+        self.solar_house = s
         self.w = split_power(self.g, s, b, n)
         self.price = self._rate(CONF_PRICE_ENT, CONF_PRICE)
         self.feed = self._rate(CONF_FEED_ENT, CONF_FEED)
