@@ -8,7 +8,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send
 from homeassistant.helpers.event import async_track_state_change_event, async_track_time_interval
 from homeassistant.util import dt as dt_util
 
-from .calc import SOURCES, advice, cover_pct, money, split_power
+from .calc import SOURCES, advice, cover_pct, free_solar, money, split_power
 from .const import *
 
 DEFAULT_TYPICAL_W = 1500.0
@@ -28,6 +28,7 @@ class Engine:
         self.end_s = float(cfg.get(CONF_RUN_MIN) or 5) * 60
         self.g = 0.0
         self.cover = 0.0
+        self._est = 0.0
         self.run: dict | None = None
         self.idle = None
         self.runs = 0
@@ -101,8 +102,17 @@ class Engine:
         self.w = split_power(self.g, s, b, n)
         self.price = self._rate(CONF_PRICE_ENT, CONF_PRICE)
         self.feed = self._rate(CONF_FEED_ENT, CONF_FEED)
-        est = self._power(self.cfg[CONF_FORECAST]) if self.cfg.get(CONF_FORECAST) else max(s, 0)
-        self.cover = cover_pct(est, self.last_w or DEFAULT_TYPICAL_W)
+        self._est = self._power(self.cfg[CONF_FORECAST]) if self.cfg.get(CONF_FORECAST) else max(s, 0)
+        self._update_cover()
+
+    def _peers(self) -> list["Engine"]:
+        """Andere eingerichtete Geräte (für die gemeinsame Solarrechnung)."""
+        return [p for p in self.hass.data.get(DOMAIN, {}).values() if isinstance(p, Engine) and p is not self]
+
+    def _update_cover(self) -> None:
+        """Solardeckung nach Abzug des Solarstroms, den andere Geräte gerade nutzen."""
+        others = sum(p.w["solar"] for p in self._peers())
+        self.cover = cover_pct(free_solar(self._est, others), self.last_w or DEFAULT_TYPICAL_W)
 
     @property
     def advice(self) -> str:
@@ -169,6 +179,9 @@ class Engine:
         self._acc()
         self._calc()
         self._run_step(dt_util.utcnow())
+        for p in self._peers():  # andere Geräte neu bewerten
+            p._update_cover()
+            async_dispatcher_send(self.hass, p.signal)
         async_dispatcher_send(self.hass, self.signal)
 
     def start(self) -> None:

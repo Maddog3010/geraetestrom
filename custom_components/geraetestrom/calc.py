@@ -22,6 +22,11 @@ def money(d_kwh: float, source: str, price: float, feed: float, bat_cost: float)
     return 0.0, d_kwh * (price - bat_cost)
 
 
+def free_solar(estimate_w: float, others_solar_w: float) -> float:
+    """Solarleistung, die nach Abzug dessen übrig bleibt, was andere Geräte schon nutzen."""
+    return max(estimate_w - max(others_solar_w, 0.0), 0.0)
+
+
 def cover_pct(estimate_w: float, typical_w: float) -> float:
     """Wie viel Prozent der typischen Geräteleistung die Solarleistung decken würde."""
     if typical_w <= 0:
