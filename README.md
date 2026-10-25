@@ -50,4 +50,4 @@ Siehe [CHANGELOG.md](CHANGELOG.md).
 Gefällt dir die Integration? Über meinen Paypal-Pool (https://www.paypal.com/pool/9tOpz2RD9R?sr=wccr) kannst du die Weiterentwicklung unterstützen. Danke!
 
 ## Veröffentlichen
-Repository: `https://github.com/Maddog3010/geraetestrom`. Für HACS braucht das Repo ein GitHub-Release (z. B. `v1.4.0`).
+Repository: `https://github.com/Maddog3010/geraetestrom`. Für HACS braucht das Repo ein GitHub-Release (z. B. `0.4.0`).
