@@ -1,15 +1,18 @@
 # Gerätestrom für Home Assistant
 
-Zeigt pro Gerät (z. B. Waschmaschine), **woher der Strom kommt**: Solaranlage, Batterie oder Netz. Dazu **Kosten** und **Ersparnis**.
+Zeigt pro Gerät (z. B. Waschmaschine, Trockner, Spülmaschine), **woher der Strom kommt**: Solaranlage, Batterie oder Netz. Dazu **Kosten** und **Ersparnis**, pro Durchlauf, heute, im Monat und gesamt.
 
-## Vorschau
-Die Datei `docs/vorschau.html` im Browser öffnen: Übersicht pro Gerät, Tab „Alle Geräte“ mit drei Karten (Desktop nebeneinander, Mobil untereinander), Sensor- und Preisauswahl. Die Werte dort sind Beispieldaten.
+Vorschau: `docs/vorschau.html` im Browser öffnen (Beispieldaten).
 
 ## Funktionen
-- Sensoren per Auswahlliste wählen (Gerät, Solar, Batterie, Netz)
-- Bezugspreis und Einspeisevergütung wahlweise per **Sensor** oder **manuell**
-- Mehrere Geräte möglich (Integration mehrfach hinzufügen)
-- Sensoren für Anteile (W), Energie (kWh), Kosten, Ersparnis, Eigenversorgung
+- Einrichtung per Oberfläche mit Auswahllisten für alle Sensoren, mehrere Geräte möglich
+- Eigene Seite **Gerätestrom** in der Seitenleiste: Karten pro Gerät (Desktop nebeneinander, Mobil untereinander), Verlauf (Heute, 7 Tage, Monat, Jahr, Gesamt) wahlweise für alle oder ein Gerät, Vergleich der Geräte
+- **Heute, Monat und Gesamt** für Kosten und Ersparnis
+- **Durchläufe** werden automatisch erkannt: Kosten, Energie und Eigenanteil des letzten Durchlaufs sowie Durchschnitt
+- **Speicherkosten der Batterie** einstellbar (0 = Batteriestrom gilt als kostenlos)
+- **Startempfehlung** („Jetzt starten“, „Teilweise Solar“, „Besser warten“) aus der aktuellen Solarleistung oder einem Solarprognose-Sensor
+- **Meldung am Ende eines Durchlaufs** über einen Benachrichtigungsdienst, zusätzlich als Ereignis `geraetestrom_run_finished` für eigene Automationen
+- Bezugspreis und Einspeisevergütung wahlweise per Sensor oder manuell
 - Werte bleiben nach einem Neustart erhalten
 
 ## Installation über HACS
@@ -21,13 +24,21 @@ Die Datei `docs/vorschau.html` im Browser öffnen: Übersicht pro Gerät, Tab �
 ## So wird gerechnet
 Die Leistung des Geräts wird anteilig auf Solar, Batterie und Netz verteilt, je nachdem, woher das Haus gerade Strom bezieht. Über die Zeit ergeben sich kWh pro Quelle.
 - **Kosten** = Netzbezug × Bezugspreis
-- **Ersparnis** = Solar × (Bezugspreis − Einspeisevergütung) + Batterie × Bezugspreis
+- **Ersparnis** = Solar × (Bezugspreis − Einspeisevergütung) + Batterie × (Bezugspreis − Speicherkosten)
+- **Durchlauf**: beginnt, wenn die Geräteleistung die Schwelle überschreitet, und endet, wenn sie die eingestellte Zeit darunter bleibt
+- **Solardeckung** = Solarleistung (oder Prognose) geteilt durch die typische Geräteleistung des letzten Durchlaufs (Näherung)
 
 ## Vorzeichen
 Erwartet: Batterie positiv beim Entladen, Netz positiv beim Bezug. Bei umgekehrten Sensoren die Optionen „Vorzeichen umkehren“ nutzen.
 
-## Dashboard
-`dashboard/geraete.yaml` zeigt drei Geräte (Desktop nebeneinander, Mobil untereinander), `dashboard/geraet.yaml` ein einzelnes Gerät. Die Datei im Dashboard-Rohkonfigurationseditor als Ansicht einfügen. „waschmaschine“ durch den Namen deines Geräts ersetzen. Heute, Monat und Jahr zeigen die Statistik-Grafiken.
+## Energie-Dashboard
+Die kWh-Sensoren sind für das Energie-Dashboard geeignet: **Einstellungen → Dashboards → Energie → Einzelne Geräte → Gerät hinzufügen** und „Solar-Energie“, „Batterie-Energie“ oder „Netz-Energie“ wählen.
+
+## Eigenes Dashboard (optional)
+Statt der Seitenleisten-Seite lässt sich `dashboard/geraete.yaml` (drei Geräte) oder `dashboard/geraet.yaml` (ein Gerät) im Rohkonfigurationseditor eines neuen Dashboards einfügen. Entity-Namen anpassen: `waschmaschine` ist der Gerätename in Kleinbuchstaben, Umlaute werden zu einfachen Buchstaben.
+
+## Entwicklung
+`pytest` prüft die Rechenfunktionen (`calc.py`). Der Workflow „Validate“ prüft HACS und hassfest.
 
 ## Vor dem Hochladen
-`DEIN_GITHUB_NAME` in `custom_components/geraetestrom/manifest.json` ersetzen. Das Repo braucht ein GitHub-Release (z. B. `v1.0.0`), damit HACS die Version erkennt.
+`DEIN_GITHUB_NAME` in `manifest.json` und `LICENSE` ersetzen. Für HACS braucht das Repo ein GitHub-Release (z. B. `v1.2.0`).
