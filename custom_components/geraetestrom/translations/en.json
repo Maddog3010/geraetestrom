@@ -18,7 +18,7 @@
           "feed_manual": "Feed-in tariff: manual value",
           "battery_cost": "Battery storage cost (€/kWh, 0 = battery power is free)",
           "forecast_entity": "Solar forecast sensor in W (optional)",
-          "notify_service": "Notify service (optional, e.g. notify.mobile_app_pixel)",
+          "notify_service": "Notify services (select one or more)",
           "run_threshold_w": "Run starts above (W)",
           "run_end_minutes": "Run ends after (minutes below threshold)"
         }
@@ -43,7 +43,7 @@
           "feed_manual": "Feed-in tariff: manual value",
           "battery_cost": "Battery storage cost (€/kWh, 0 = battery power is free)",
           "forecast_entity": "Solar forecast sensor in W (optional)",
-          "notify_service": "Notify service (optional, e.g. notify.mobile_app_pixel)",
+          "notify_service": "Notify services (select one or more)",
           "run_threshold_w": "Run starts above (W)",
           "run_end_minutes": "Run ends after (minutes below threshold)"
         }

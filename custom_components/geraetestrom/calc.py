@@ -40,3 +40,18 @@ def advice(cover: float) -> str:
     if cover >= 30:
         return "Teilweise Solar"
     return "Besser warten"
+
+
+def normalize_services(raw) -> list[tuple[str, str]]:
+    """Benachrichtigungsdienste (Liste oder einzelner Text) in (Domain, Dienst) umwandeln."""
+    items = [raw] if isinstance(raw, str) else list(raw or [])
+    out: list[tuple[str, str]] = []
+    for item in items:
+        item = (item or "").strip()
+        if not item:
+            continue
+        domain, _, name = item.partition(".")
+        pair = (domain, name) if name else ("notify", domain)
+        if pair not in out:
+            out.append(pair)
+    return out

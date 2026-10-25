@@ -29,7 +29,7 @@ async def _register_panel(hass: HomeAssistant) -> None:
             hass,
             frontend_url_path=PANEL,
             webcomponent_name="geraetestrom-panel",
-            module_url="/geraetestrom/panel.js?v=1.3.0",
+            module_url="/geraetestrom/panel.js?v=1.4.4",
             sidebar_title="Gerätestrom",
             sidebar_icon="mdi:flash",
             require_admin=False,

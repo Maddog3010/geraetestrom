@@ -8,7 +8,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send
 from homeassistant.helpers.event import async_track_state_change_event, async_track_time_interval
 from homeassistant.util import dt as dt_util
 
-from .calc import SOURCES, advice, cover_pct, free_solar, money, split_power
+from .calc import SOURCES, advice, cover_pct, free_solar, money, normalize_services, split_power
 from .const import *
 
 DEFAULT_TYPICAL_W = 1500.0
@@ -162,12 +162,9 @@ class Engine:
             "dauer_min": round(hours * 60),
         }
         self.hass.bus.async_fire(EVENT_RUN, data)
-        if svc := (self.cfg.get(CONF_NOTIFY) or "").strip():
-            domain, _, name = svc.partition(".")
-            if not name:
-                domain, name = "notify", domain
-            msg = (f"{kwh:.2f} kWh · {r['cost']:.2f} € · {share:.0f} % eigener Strom "
-                   f"(gespart: {r['saved']:.2f} €)".replace(".", ","))
+        msg = (f"{kwh:.2f} kWh · {r['cost']:.2f} € · {share:.0f} % eigener Strom "
+               f"(gespart: {r['saved']:.2f} €)".replace(".", ","))
+        for domain, name in normalize_services(self.cfg.get(CONF_NOTIFY)):
             self.hass.async_create_task(self.hass.services.async_call(
                 domain, name, {"title": f"{self.name} fertig", "message": msg}))
 

@@ -18,7 +18,7 @@
           "feed_manual": "Einspeisevergütung: manueller Wert",
           "battery_cost": "Speicherkosten der Batterie (€/kWh, 0 = Batteriestrom gratis)",
           "forecast_entity": "Solarprognose-Sensor in W (optional, z. B. Forecast.Solar „nächste Stunde“)",
-          "notify_service": "Benachrichtigungsdienst (optional, z. B. notify.mobile_app_pixel)",
+          "notify_service": "Benachrichtigungsdienste (Auswahl, mehrere möglich)",
           "run_threshold_w": "Durchlauf startet ab (W)",
           "run_end_minutes": "Durchlauf endet nach (Minuten unter Schwelle)"
         }
@@ -43,7 +43,7 @@
           "feed_manual": "Einspeisevergütung: manueller Wert",
           "battery_cost": "Speicherkosten der Batterie (€/kWh, 0 = Batteriestrom gratis)",
           "forecast_entity": "Solarprognose-Sensor in W (optional, z. B. Forecast.Solar „nächste Stunde“)",
-          "notify_service": "Benachrichtigungsdienst (optional, z. B. notify.mobile_app_pixel)",
+          "notify_service": "Benachrichtigungsdienste (Auswahl, mehrere möglich)",
           "run_threshold_w": "Durchlauf startet ab (W)",
           "run_end_minutes": "Durchlauf endet nach (Minuten unter Schwelle)"
         }
