@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Gerät hinzufügen",
-        "description": "Ist ein Preissensor gewählt, hat er Vorrang. Ohne Sensor gilt der manuelle Wert.",
+        "description": "Ein gewählter Preissensor hat Vorrang vor dem manuellen Wert.",
         "data": {
           "name": "Name des Geräts",
           "device_entity": "Leistungssensor des Geräts (W)",
@@ -15,7 +15,12 @@
           "price_entity": "Bezugspreis: Sensor (optional)",
           "price_manual": "Bezugspreis: manueller Wert",
           "feed_entity": "Einspeisevergütung: Sensor (optional)",
-          "feed_manual": "Einspeisevergütung: manueller Wert"
+          "feed_manual": "Einspeisevergütung: manueller Wert",
+          "battery_cost": "Speicherkosten der Batterie (€/kWh, 0 = Batteriestrom gratis)",
+          "forecast_entity": "Solarprognose-Sensor in W (optional, z. B. Forecast.Solar „nächste Stunde“)",
+          "notify_service": "Benachrichtigungsdienst (optional, z. B. notify.mobile_app_pixel)",
+          "run_threshold_w": "Durchlauf startet ab (W)",
+          "run_end_minutes": "Durchlauf endet nach (Minuten unter Schwelle)"
         }
       }
     }
@@ -24,7 +29,7 @@
     "step": {
       "init": {
         "title": "Einstellungen",
-        "description": "Ist ein Preissensor gewählt, hat er Vorrang. Ohne Sensor gilt der manuelle Wert.",
+        "description": "Ein gewählter Preissensor hat Vorrang vor dem manuellen Wert.",
         "data": {
           "device_entity": "Leistungssensor des Geräts (W)",
           "solar_entity": "Solar-Leistung fürs Haus (W)",
@@ -35,7 +40,12 @@
           "price_entity": "Bezugspreis: Sensor (optional)",
           "price_manual": "Bezugspreis: manueller Wert",
           "feed_entity": "Einspeisevergütung: Sensor (optional)",
-          "feed_manual": "Einspeisevergütung: manueller Wert"
+          "feed_manual": "Einspeisevergütung: manueller Wert",
+          "battery_cost": "Speicherkosten der Batterie (€/kWh, 0 = Batteriestrom gratis)",
+          "forecast_entity": "Solarprognose-Sensor in W (optional, z. B. Forecast.Solar „nächste Stunde“)",
+          "notify_service": "Benachrichtigungsdienst (optional, z. B. notify.mobile_app_pixel)",
+          "run_threshold_w": "Durchlauf startet ab (W)",
+          "run_end_minutes": "Durchlauf endet nach (Minuten unter Schwelle)"
         }
       }
     }

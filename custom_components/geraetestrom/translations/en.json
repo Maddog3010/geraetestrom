@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Add device",
-        "description": "A selected price sensor takes priority; otherwise the manual value is used.",
+        "description": "A selected price sensor takes priority over the manual value.",
         "data": {
           "name": "Device name",
           "device_entity": "Device power sensor (W)",
@@ -15,7 +15,12 @@
           "price_entity": "Import price: sensor (optional)",
           "price_manual": "Import price: manual value",
           "feed_entity": "Feed-in tariff: sensor (optional)",
-          "feed_manual": "Feed-in tariff: manual value"
+          "feed_manual": "Feed-in tariff: manual value",
+          "battery_cost": "Battery storage cost (€/kWh, 0 = battery power is free)",
+          "forecast_entity": "Solar forecast sensor in W (optional)",
+          "notify_service": "Notify service (optional, e.g. notify.mobile_app_pixel)",
+          "run_threshold_w": "Run starts above (W)",
+          "run_end_minutes": "Run ends after (minutes below threshold)"
         }
       }
     }
@@ -24,7 +29,7 @@
     "step": {
       "init": {
         "title": "Settings",
-        "description": "A selected price sensor takes priority; otherwise the manual value is used.",
+        "description": "A selected price sensor takes priority over the manual value.",
         "data": {
           "device_entity": "Device power sensor (W)",
           "solar_entity": "Solar power to house (W)",
@@ -35,7 +40,12 @@
           "price_entity": "Import price: sensor (optional)",
           "price_manual": "Import price: manual value",
           "feed_entity": "Feed-in tariff: sensor (optional)",
-          "feed_manual": "Feed-in tariff: manual value"
+          "feed_manual": "Feed-in tariff: manual value",
+          "battery_cost": "Battery storage cost (€/kWh, 0 = battery power is free)",
+          "forecast_entity": "Solar forecast sensor in W (optional)",
+          "notify_service": "Notify service (optional, e.g. notify.mobile_app_pixel)",
+          "run_threshold_w": "Run starts above (W)",
+          "run_end_minutes": "Run ends after (minutes below threshold)"
         }
       }
     }
