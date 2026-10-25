@@ -40,6 +40,7 @@ class GSensor(RestoreEntity, SensorEntity):
         self._eng, self._fn, self._rst = eng, fn, rst
         self._attr_unique_id = f"{entry.entry_id}_{key}"
         self._attr_name = name
+        self._attr_extra_state_attributes = {"geraetestrom": key, "geraet": entry.title}
         self._attr_native_unit_of_measurement = unit
         self._attr_device_class = dc
         self._attr_state_class = sc

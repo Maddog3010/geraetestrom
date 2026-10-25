@@ -1,12 +1,19 @@
 {
   "domain": "geraetestrom",
   "name": "Gerätestrom",
-  "codeowners": ["@Maddog3010"],
+  "codeowners": [
+    "@DEIN_GITHUB_NAME"
+  ],
   "config_flow": true,
-  "documentation": "https://github.com/Maddog3010/geraetestrom",
+  "dependencies": [
+    "http",
+    "frontend",
+    "panel_custom"
+  ],
+  "documentation": "https://github.com/DEIN_GITHUB_NAME/geraetestrom",
   "integration_type": "service",
   "iot_class": "calculated",
-  "issue_tracker": "https://github.com/Maddog3010/geraetestrom/issues",
+  "issue_tracker": "https://github.com/DEIN_GITHUB_NAME/geraetestrom/issues",
   "requirements": [],
-  "version": "0.1.0"
+  "version": "1.1.0"
 }
