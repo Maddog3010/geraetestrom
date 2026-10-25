@@ -26,7 +26,8 @@ Die Leistung des Geräts wird anteilig auf Solar, Batterie und Netz verteilt, je
 - **Kosten** = Netzbezug × Bezugspreis
 - **Ersparnis** = Solar × (Bezugspreis − Einspeisevergütung) + Batterie × (Bezugspreis − Speicherkosten)
 - **Durchlauf**: beginnt, wenn die Geräteleistung die Schwelle überschreitet, und endet, wenn sie die eingestellte Zeit darunter bleibt
-- **Solardeckung** = Solarleistung (oder Prognose) geteilt durch die typische Geräteleistung des letzten Durchlaufs (Näherung)
+- **Solardeckung** = freie Solarleistung geteilt durch die typische Geräteleistung des letzten Durchlaufs (Näherung). Frei heißt: Solarleistung (oder Prognose) minus der Solarstrom, den andere Geräte gerade nutzen. Läuft der Trockner schon mit Solarstrom, sinkt die Empfehlung für die Waschmaschine.
+- **Mehrere Geräte** laufen unabhängig voneinander mit demselben Hausmix (Anteile statt feste Watt, daher kein doppelt gezählter Solarstrom). Eine Rangfolge gibt es nicht.
 
 ## Vorzeichen
 Erwartet: Batterie positiv beim Entladen, Netz positiv beim Bezug. Bei umgekehrten Sensoren die Optionen „Vorzeichen umkehren“ nutzen.
@@ -37,8 +38,11 @@ Die kWh-Sensoren sind für das Energie-Dashboard geeignet: **Einstellungen → D
 ## Eigenes Dashboard (optional)
 Statt der Seitenleisten-Seite lässt sich `dashboard/geraete.yaml` (drei Geräte) oder `dashboard/geraet.yaml` (ein Gerät) im Rohkonfigurationseditor eines neuen Dashboards einfügen. Entity-Namen anpassen: `waschmaschine` ist der Gerätename in Kleinbuchstaben, Umlaute werden zu einfachen Buchstaben.
 
+## Änderungen
+Siehe [CHANGELOG.md](CHANGELOG.md).
+
 ## Entwicklung
 `pytest` prüft die Rechenfunktionen (`calc.py`). Der Workflow „Validate“ prüft HACS und hassfest.
 
 ## Vor dem Hochladen
-`DEIN_GITHUB_NAME` in `manifest.json` und `LICENSE` ersetzen. Für HACS braucht das Repo ein GitHub-Release (z. B. `v1.2.0`).
+`DEIN_GITHUB_NAME` in `manifest.json` und `LICENSE` ersetzen. Für HACS braucht das Repo ein GitHub-Release (z. B. `v1.2.1`).

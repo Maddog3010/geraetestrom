@@ -1,43 +1,44 @@
 # Dashboard-Ansicht. "waschmaschine" durch den Namen deines Geräts (kleingeschrieben) ersetzen.
-title: Waschmaschine
-cards:
-  - type: horizontal-stack
+views:
+  - title: Waschmaschine
     cards:
-      - {type: tile, entity: sensor.waschmaschine_solar_anteil,    name: Solar,    icon: "mdi:white-balance-sunny", color: yellow}
-      - {type: tile, entity: sensor.waschmaschine_batterie_anteil, name: Batterie, icon: "mdi:battery-charging",     color: green}
-      - {type: tile, entity: sensor.waschmaschine_netz_anteil,     name: Netz,     icon: "mdi:transmission-tower",   color: indigo}
-  - type: gauge
-    entity: sensor.waschmaschine_eigenversorgung
-    name: Eigener Strom
-    min: 0
-    max: 100
-    severity: {red: 0, yellow: 30, green: 60}
-  - type: entities
-    title: Kosten & Ersparnis (gesamt)
-    entities:
-      - sensor.waschmaschine_kosten
-      - sensor.waschmaschine_ersparnis
-  - type: statistics-graph
-    title: Letzte 7 Tage
-    chart_type: bar
-    period: day
-    days_to_show: 7
-    stat_types: [change]
-    entities: &energie
-      - sensor.waschmaschine_solar_energie
-      - sensor.waschmaschine_batterie_energie
-      - sensor.waschmaschine_netz_energie
-  - type: statistics-graph
-    title: Letzte 12 Monate
-    chart_type: bar
-    period: month
-    days_to_show: 365
-    stat_types: [change]
-    entities: *energie
-  - type: statistics-graph
-    title: Gesamt
-    chart_type: bar
-    period: month
-    days_to_show: 1825
-    stat_types: [change]
-    entities: *energie
+      - type: horizontal-stack
+        cards:
+          - {type: tile, entity: sensor.waschmaschine_solar_anteil,    name: Solar,    icon: "mdi:white-balance-sunny", color: yellow}
+          - {type: tile, entity: sensor.waschmaschine_batterie_anteil, name: Batterie, icon: "mdi:battery-charging",     color: green}
+          - {type: tile, entity: sensor.waschmaschine_netz_anteil,     name: Netz,     icon: "mdi:transmission-tower",   color: indigo}
+      - type: gauge
+        entity: sensor.waschmaschine_eigenversorgung
+        name: Eigener Strom
+        min: 0
+        max: 100
+        severity: {red: 0, yellow: 30, green: 60}
+      - type: entities
+        title: Kosten & Ersparnis (gesamt)
+        entities:
+          - sensor.waschmaschine_kosten
+          - sensor.waschmaschine_ersparnis
+      - type: statistics-graph
+        title: Letzte 7 Tage
+        chart_type: bar
+        period: day
+        days_to_show: 7
+        stat_types: [change]
+        entities: &energie
+          - sensor.waschmaschine_solar_energie
+          - sensor.waschmaschine_batterie_energie
+          - sensor.waschmaschine_netz_energie
+      - type: statistics-graph
+        title: Letzte 12 Monate
+        chart_type: bar
+        period: month
+        days_to_show: 365
+        stat_types: [change]
+        entities: *energie
+      - type: statistics-graph
+        title: Gesamt
+        chart_type: bar
+        period: month
+        days_to_show: 1825
+        stat_types: [change]
+        entities: *energie

@@ -34,3 +34,9 @@ def test_cover_and_advice():
     assert calc.advice(80) == "Jetzt starten"
     assert calc.advice(50) == "Teilweise Solar"
     assert calc.advice(10) == "Besser warten"
+
+
+def test_free_solar():
+    assert calc.free_solar(3000, 1200) == 1800
+    assert calc.free_solar(1000, 1500) == 0
+    assert calc.free_solar(1000, -50) == 1000
