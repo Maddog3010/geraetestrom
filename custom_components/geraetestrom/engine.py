@@ -12,6 +12,11 @@ from .calc import SOURCES, advice, cover_pct, free_solar, money, split_power
 from .const import *
 
 DEFAULT_TYPICAL_W = 1500.0
+PERIODS = ("day", "month", "year")
+
+
+def _blank() -> dict:
+    return {"cost": 0.0, "saved": 0.0, "kwh": 0.0, "runs": 0.0}
 
 
 class Engine:
@@ -33,8 +38,8 @@ class Engine:
         self.idle = None
         self.runs = 0
         self.avg_cost = self.last_cost = self.last_kwh = self.last_share = self.last_w = 0.0
-        self.pk = {k: self._key(k) for k in ("day", "month")}
-        self.pv = {k: {"cost": 0.0, "saved": 0.0, "kwh": 0.0} for k in ("day", "month")}
+        self.pk = {k: self._key(k) for k in PERIODS}
+        self.pv = {k: _blank() for k in PERIODS}
         self.last = dt_util.utcnow()
         self._unsubs: list = []
 
@@ -60,18 +65,20 @@ class Engine:
 
     def _key(self, kind: str) -> str:
         n = dt_util.now()
-        return n.date().isoformat() if kind == "day" else n.strftime("%Y-%m")
+        return {"day": n.date().isoformat(), "month": n.strftime("%Y-%m"), "year": n.strftime("%Y")}[kind]
 
     def period_start(self, kind: str):
         d = dt_util.start_of_local_day()
-        return d if kind == "day" else d.replace(day=1)
+        if kind == "day":
+            return d
+        return d.replace(day=1) if kind == "month" else d.replace(month=1, day=1)
 
     def _roll(self) -> None:
-        for k in ("day", "month"):
+        for k in PERIODS:
             key = self._key(k)
             if key != self.pk[k]:
                 self.pk[k] = key
-                self.pv[k] = {"cost": 0.0, "saved": 0.0, "kwh": 0.0}
+                self.pv[k] = _blank()
 
     # --- Berechnung ------------------------------------------------------
     def _acc(self) -> None:
@@ -144,6 +151,8 @@ class Engine:
         share = 100 * (r["e"]["solar"] + r["e"]["battery"]) / kwh
         hours = max((end - r["start"]).total_seconds() / 3600, 1e-6)
         self.runs += 1
+        for p in self.pv.values():
+            p["runs"] += 1
         self.avg_cost += (r["cost"] - self.avg_cost) / self.runs
         self.last_cost, self.last_kwh, self.last_share = r["cost"], kwh, share
         self.last_w = kwh * 1000 / hours
