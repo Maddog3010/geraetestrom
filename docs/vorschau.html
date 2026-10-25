@@ -50,28 +50,47 @@ td:first-child,th:first-child{text-align:left}.sav{color:var(--sav)}.run{margin-
 .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;flex:none}
 .dev{display:flex;align-items:center;gap:12px}.dev b{font-size:18px}
 .st{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mut)}.st i{width:9px;height:9px;border-radius:50%;background:var(--bat);display:inline-block}
+#a{display:flex;flex-direction:column}.blk{position:relative}.all .blk{margin:0}
+.ph{flex-wrap:wrap}.edb{border:1px solid var(--ln);background:var(--card);color:var(--tx);border-radius:99px;padding:9px 16px;font:inherit;cursor:pointer}
+.edit .blk{outline:2px dashed var(--bat);outline-offset:4px;border-radius:20px;cursor:grab}
+.mv{position:absolute;top:-14px;right:12px;z-index:3;display:flex;gap:6px;align-items:center;background:#000b;color:#fff;border-radius:99px;padding:4px 8px}
+.mv button{border:0;background:#fff2;color:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer}
+.chw{display:flex;gap:8px}.yax{display:flex;flex-direction:column;justify-content:space-between;height:110px;margin-top:16px;text-align:right;font-size:11px;color:var(--mut);min-width:28px}
+.vl{font-size:10px;color:var(--mut);height:14px;line-height:14px}.bars{flex:1;margin-top:2px}
+.lgd{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:13px}.lgd i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
+.cb{height:18px}.cb i{display:flex;align-items:center;justify-content:center;font-size:10px;font-style:normal}
+@media (max-width:560px){.cmp{grid-template-columns:90px 1fr}.cmp b{grid-column:1/-1}}
+.ms{border:1px solid var(--ln);border-radius:10px;background:var(--card)}.ms summary{padding:8px 10px;cursor:pointer}
+.ms .opts{padding:8px 10px;border-top:1px solid var(--ln);display:grid;gap:8px}.opts label{font-weight:400;display:flex;gap:8px;align-items:center}.opts input{width:auto}
+.cmp{display:block;margin-top:12px}.cmp .h{display:flex;justify-content:space-between;gap:8px;margin-bottom:5px}.cmp .h span:first-child{font-weight:600}
+.cb{height:22px;align-items:center}.cb .sm{padding-left:8px;font-size:12px;font-weight:600;white-space:nowrap}
+.stack i,.cb i{display:flex;align-items:center;justify-content:center;font-size:10.5px;font-style:normal;overflow:hidden;white-space:nowrap}.stack i{width:100%}
+.bars{align-items:flex-start}
+.hid{display:flex;flex-direction:column;align-items:center;gap:1px;margin-top:3px}.hid span{font-size:10px;color:var(--mut);white-space:nowrap}.hid i{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:3px}
+.hid2{display:flex;flex-wrap:wrap;gap:2px 12px;margin-top:4px}.hid2 span{font-size:11px;color:var(--mut)}.hid2 i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px}
+.cl{display:flex;flex-wrap:wrap;align-items:center;gap:2px 14px;margin-top:6px;font-size:12px}.cl span{white-space:nowrap}.cl i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px}.cl b{margin-left:auto;white-space:nowrap}
 [hidden]{display:none!important}
 </style></head><body><main>
-<div class="ph"><div class="logo">⚡</div><div><h1>Gerätestrom</h1><div class="mut">Stromherkunft, Kosten und Ersparnis pro Gerät</div></div></div>
+<div class="ph"><div class="logo">⚡</div><div><h1>Gerätestrom</h1><div class="mut">Stromherkunft, Kosten und Ersparnis pro Gerät</div></div><div style="margin-left:auto;display:flex;gap:8px"><button id="rs" class="edb" hidden>Zurücksetzen</button><button id="ed" class="edb">✏️ Anpassen</button></div></div>
 <div class="tabs" id="tabs"><button class="on" data-p="a">Übersicht</button><button data-p="b">Einrichtung</button></div>
 
-<section id="a"><div class="ban"><div><div class="lb">⚡ Heute gespart (geschätzt)</div><div class="big2" id="bh"></div><div class="dt" id="bd"></div><div class="pills" id="bp"></div></div><svg viewBox="0 0 220 200" width="200" height="182" aria-hidden="true"><rect x="14" y="8" width="140" height="122" rx="24" fill="#fff"/><rect x="26" y="20" width="116" height="98" rx="15" fill="#1b3a46"/><circle cx="84" cy="69" r="37" fill="#e6f6f3"/><circle cx="84" cy="69" r="26" fill="#4fb3a5"/><path d="M60 71q12-11 24 0t24 0" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="38" cy="34" r="4" fill="#f5b83d"/><circle cx="188" cy="38" r="17" fill="#f5b83d"/><g stroke="#f5b83d" stroke-width="4" stroke-linecap="round"><path d="M188 8v8M188 60v8M158 38h8M210 38h8M167 17l6 6M203 53l6 6M209 17l-6 6M173 53l-6 6"/></g><rect x="22" y="146" width="150" height="42" rx="21" fill="#fff"/><g fill="#1b3a46"><rect x="40" y="156" width="14" height="22" rx="7"/><rect x="66" y="156" width="14" height="22" rx="7"/><rect x="92" y="156" width="14" height="22" rx="7"/><rect x="118" y="156" width="14" height="22" rx="7"/></g><rect x="144" y="156" width="14" height="22" rx="7" fill="#3ecf9b"/><circle cx="194" cy="170" r="9" fill="#f5b83d"/></svg></div>
-<div class="tl" id="tl"></div>
-<div class="all" id="all"></div>
-<div class="card"><b id="ct"></b><div class="mut" id="cs"></div>
-<div class="chips" id="pc"></div><div class="chips" id="dc"></div><div class="bars" id="bars"></div></div>
-<div class="card"><b>Vergleich der Geräte</b><div class="mut" id="cm"></div><div id="cmp"></div></div></section>
+<section id="a"><div class="blk" data-g="sec" data-id="ban"><div class="ban"><div><div class="lb">⚡ Heute gespart (geschätzt)</div><div class="big2" id="bh"></div><div class="dt" id="bd"></div><div class="pills" id="bp"></div></div><svg viewBox="0 0 220 200" width="200" height="182" aria-hidden="true"><rect x="14" y="8" width="140" height="122" rx="24" fill="#fff"/><rect x="26" y="20" width="116" height="98" rx="15" fill="#1b3a46"/><circle cx="84" cy="69" r="37" fill="#e6f6f3"/><circle cx="84" cy="69" r="26" fill="#4fb3a5"/><path d="M60 71q12-11 24 0t24 0" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="38" cy="34" r="4" fill="#f5b83d"/><circle cx="188" cy="38" r="17" fill="#f5b83d"/><g stroke="#f5b83d" stroke-width="4" stroke-linecap="round"><path d="M188 8v8M188 60v8M158 38h8M210 38h8M167 17l6 6M203 53l6 6M209 17l-6 6M173 53l-6 6"/></g><rect x="22" y="146" width="150" height="42" rx="21" fill="#fff"/><g fill="#1b3a46"><rect x="40" y="156" width="14" height="22" rx="7"/><rect x="66" y="156" width="14" height="22" rx="7"/><rect x="92" y="156" width="14" height="22" rx="7"/><rect x="118" y="156" width="14" height="22" rx="7"/></g><rect x="144" y="156" width="14" height="22" rx="7" fill="#3ecf9b"/><circle cx="194" cy="170" r="9" fill="#f5b83d"/></svg></div></div>
+<div class="blk" data-g="sec" data-id="tl"><div class="tl" id="tl"></div></div>
+<div class="blk" data-g="sec" data-id="all"><div class="all" id="all"></div></div>
+<div class="blk" data-g="sec" data-id="ch"><div class="card"><b id="ct"></b><div class="mut" id="cs"></div>
+<div class="chips" id="pc"></div><div class="chips" id="dc"></div><div class="mut" style="margin-top:6px">Energie pro Zeitraum in kWh, nach Herkunft</div><div class="chw"><div class="bars" id="bars"></div></div><div class="lgd" id="lg1"></div></div></div>
+<div class="blk" data-g="sec" data-id="cm"><div class="card"><b>Vergleich der Geräte</b><div class="mut" id="cm"></div><div class="lgd" id="lg2"></div><div id="cmp"></div></div></div></section>
 
 <section id="b" hidden><div class="card"><div class="form">
 <div class="row"><label>Bezugspreis (€/kWh)</label><select id="pmb"><option>Manuell</option><option>Sensor</option></select><input id="pp" type="number" step="0.01" value="0.32"><select id="psb" hidden><option value="0.29">sensor.strompreis_aktuell</option><option value="0.34">sensor.tibber_preis</option></select></div>
 <div class="row"><label>Einspeisevergütung (€/kWh)</label><select id="pme"><option>Manuell</option><option>Sensor</option></select><input id="pf" type="number" step="0.01" value="0.08"><select id="pse" hidden><option value="0.082">sensor.einspeiseverguetung</option></select></div>
 <div class="row"><label>Speicherkosten der Batterie (€/kWh)</label><input id="bc" type="number" step="0.01" min="0" value="0.05"><small>0 = Batteriestrom gilt als kostenlos</small></div>
 <div class="row"><label>Solarprognose-Sensor (optional)</label><select id="fc"><option value="3000">Keiner (aktuelle Solarleistung ≈ 3000 W)</option><option value="2300">sensor.forecast_solar_naechste_stunde (≈ 2300 W)</option></select><small>Daraus entsteht die Startempfehlung. Solar, das andere laufende Geräte schon nutzen, wird abgezogen.</small></div>
-<div class="row"><label>Benachrichtigungsdienst (optional)</label><input id="nt" value="notify.mobile_app_pixel"><small>Meldung am Ende jedes Durchlaufs, zusätzlich als Ereignis geraetestrom_run_finished</small></div>
+<div class="row"><label>Benachrichtigungsdienste (optional, mehrere möglich)</label><details class="ms"><summary id="nsum"></summary><div class="opts" id="nopt"></div></details><small>Meldung am Ende jedes Durchlaufs, zusätzlich als Ereignis geraetestrom_run_finished</small></div>
 <div class="row"><label>Durchlauf startet ab (W)</label><input type="number" value="20"></div>
 <div class="row"><label>Durchlauf endet nach (Minuten unter Schwelle)</label><input type="number" value="5"></div>
 </div><div class="mut">Preise, Speicherkosten und Prognose wirken sofort auf die Übersicht.</div></div>
-<div class="card"><b>So sieht die Meldung aus</b><div class="push" style="margin-top:10px"><div class="ico">⚡</div><div><b id="n1"></b><div id="n2" class="mut"></div></div></div></div>
+<div class="card"><b>So sieht die Meldung aus</b><div class="push" style="margin-top:10px"><div class="ico">⚡</div><div><b id="n1"></b><div id="n2" class="mut"></div></div></div><div class="mut" id="n3" style="margin-top:8px"></div></div>
 <div class="card"><b>Im Energie-Dashboard</b><div class="mut" style="margin-top:4px">Einstellungen → Dashboards → Energie → Einzelne Geräte → Gerät hinzufügen → „Solar-Energie“, „Batterie-Energie“ und „Netz-Energie“ des Geräts wählen.</div></div></section>
 
 <script>
@@ -91,17 +110,18 @@ function gen(d,di){var n={h:24,'7':7,m:30,j:12,g:3}[per],K={h:.35,'7':.8,m:.5,j:
   if(per==='h'){b=(i>=8&&i<=19)?b:0;ss=Math.max(0,Math.sin((i-6)/14*Math.PI))*.9;l=i+'h'}
   else if(per==='j'){ss=.1+.6*(.5-.5*Math.cos(2*Math.PI*((i+10)%12)/12));l=MON[i]}
   else{ss=.15+.55*Math.abs(Math.sin(i*.9+di));l=per==='7'?DAYS[i]:per==='m'?String(i+1):String(2024+i)}
-  var bs=(1-ss)*.45;o.push({v:[b*ss,b*bs,b*(1-ss-bs)],l:l})}return o}
+  ss=Math.min(.95,ss*d.S[0]/.4);var bs=(1-ss)*d.S[1]/(d.S[1]+d.S[2]);o.push({v:[b*ss,b*bs,b*(1-ss-bs)],l:l})}return o}
+function hid(v,mx,on){if(!on)return'';var h=v.map(function(q,i){return q>0&&q/mx*110<13?'<span><i style="background:'+C[i]+'"></i>'+num(q,1)+'</span>':''}).join('');return h?'<div class="hid">'+h+'</div>':''}
 function render(){var q=P(),est=+$('fc').value;
- $('all').innerHTML=DV.map(function(d){var S=d.S,R=38,L=2*Math.PI*R,o=0,h='<circle cx="48" cy="48" r="'+R+'" fill="none" stroke="var(--ln)" stroke-width="12"/>';
+ $('all').innerHTML=DV.map(function(d,k){var S=d.S,R=38,L=2*Math.PI*R,o=0,h='<circle cx="48" cy="48" r="'+R+'" fill="none" stroke="var(--ln)" stroke-width="12"/>';
   S.forEach(function(s,i){h+='<circle cx="48" cy="48" r="'+R+'" fill="none" stroke="'+C[i]+'" stroke-width="12" stroke-dasharray="'+(s*L-2)+' '+L+'" stroke-dashoffset="'+(-o)+'"/>';o+=s*L});
   var oth=DV.reduce(function(a,x){return a+(x===d?0:x.W*x.S[0])},0),cv=Math.min(Math.max(est-oth,0)/d.W,1)*100,ad=cv>=70?['Jetzt starten','ok']:cv>=30?['Teilweise Solar','mid']:['Besser warten','no'];
   var row=function(l,k){var m=money(k,S,q);return'<tr><td>'+l+'</td><td>'+eur(m.c)+'</td><td class="sav">'+eur(m.s)+'</td></tr>'},rc=money(d.E,S,q).c;
-  return'<div class="card"><div class="hd"><div class="dev"><div class="ic" style="background:'+d.ac+'">'+d.ic+'</div><div><b>'+d.n+'</b><div class="st"><i></i>läuft · '+num(d.W)+' W</div></div></div><span class="pill '+ad[1]+'" title="Solardeckung ca. '+Math.round(cv)+' %">'+ad[0]+'</span></div>'
+  return'<div class="blk" data-g="dev" data-id="'+k+'"><div class="card"><div class="hd"><div class="dev"><div class="ic" style="background:'+d.ac+'">'+d.ic+'</div><div><b>'+d.n+'</b><div class="st"><i></i>läuft · '+num(d.W)+' W</div></div></div><span class="pill '+ad[1]+'" title="Solardeckung ca. '+Math.round(cv)+' %">'+ad[0]+'</span></div>'
   +'<div class="hero"><div class="donut"><svg width="96" height="96" viewBox="0 0 96 96">'+h+'</svg><div class="c"><b>'+Math.round((S[0]+S[1])*100)+'</b><span>% eigen</span></div></div><div class="leg">'
   +S.map(function(s,i){return'<div><span class="dot" style="background:'+C[i]+'"></span><span><strong>'+num(d.W*s)+' W</strong><span class="mut">'+N[i]+'</span></span></div>'}).join('')+'</div></div>'
   +'<table><tr><th></th><th>Kosten</th><th>Ersparnis</th></tr>'+row('Heute',d.d)+row('Monat',d.m)+row('Gesamt',d.t)+'</table>'
-  +'<div class="mut run">Letzter Durchlauf: '+num(d.E,2)+' kWh · '+eur(rc)+' · '+Math.round((S[0]+S[1])*100)+' % eigener Strom<br>Ø '+eur(rc*1.04)+' pro Durchlauf ('+d.r+' Durchläufe)</div></div>'}).join('');
+  +'<div class="mut run">Letzter Durchlauf: '+num(d.E,2)+' kWh · '+eur(rc)+' · '+Math.round((S[0]+S[1])*100)+' % eigener Strom<br>Ø '+eur(rc*1.04)+' pro Durchlauf ('+d.r+' Durchläufe)</div></div></div>'}).join('');
  var sv=function(k){return DV.reduce(function(a,d){return a+money(d[k],d.S,q).s},0)},co=function(k){return DV.reduce(function(a,d){return a+money(d[k],d.S,q).c},0)};
  $('bh').innerHTML=sv('d').toFixed(2).replace('.',',')+'<span>€</span>';
  $('bd').textContent=new Date().toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'});
@@ -114,16 +134,36 @@ function render(){var q=P(),est=+$('fc').value;
  $('ct').textContent=PT[per]+(ds>=0?' · '+DV[ds].n:'');$('cs').textContent=num(sm)+' kWh gesamt, davon '+Math.round(ow/sm*100)+' % eigener Strom';
  $('pc').innerHTML=Object.keys(PB).map(function(k){return'<button data-r="'+k+'"'+(k===per?' class="on"':'')+'>'+PB[k]+'</button>'}).join('');
  $('dc').innerHTML=['Alle Geräte'].concat(DV.map(function(d){return d.n})).map(function(t,k){return'<button data-d="'+(k-1)+'"'+(k-1===ds?' class="on"':'')+'>'+t+'</button>'}).join('');
- var mx=Math.max.apply(null,tot.map(function(x){return x.v[0]+x.v[1]+x.v[2]})),st=Math.ceil(n/12);
- $('bars').innerHTML=tot.map(function(x,j){return'<div><div class="stack">'+x.v.map(function(v,i){return'<i style="height:'+v/mx*100+'%;background:'+C[i]+'"></i>'}).join('')+'</div><small>'+(j%st===0?x.l:'&nbsp;')+'</small></div>'}).join('');
- $('cm').textContent=PT[per]+', Energie nach Herkunft';
+ var mx=Math.max.apply(null,tot.map(function(x){return x.v[0]+x.v[1]+x.v[2]})),st=Math.ceil(n/12),sv1=n<=12,s3=[0,0,0],s4=[0,0,0];
+ tot.forEach(function(x){x.v.forEach(function(v,i){s3[i]+=v})});T.forEach(function(a){a.forEach(function(v,i){s4[i]+=v})});
+ var lg=function(a){return N.map(function(nm,i){return'<span><i style="background:'+C[i]+'"></i>'+nm+' <b>'+num(a[i],1)+' kWh</b></span>'}).join('')};
+ 
+ $('bars').innerHTML=tot.map(function(x,j){var s=x.v[0]+x.v[1]+x.v[2];return'<div title="'+num(s,2)+' kWh"><div class="stack">'+x.v.map(function(v,i){return'<i style="height:'+v/mx*100+'%;background:'+C[i]+';color:'+(i?'#fff':'#1b1500')+'">'+(sv1&&v/mx*110>=13?num(v,1):'')+'</i>'}).join('')+'</div><small>'+(j%st===0?x.l:'&nbsp;')+'</small>'+hid(x.v,mx,sv1)+'</div>'}).join('');
+ $('lg1').innerHTML=lg(s3);$('lg2').innerHTML=lg(s4);
+ $('cm').textContent=PT[per]+', Energie je Gerät in kWh nach Herkunft';
  var tm=Math.max.apply(null,T.map(function(a){return a[0]+a[1]+a[2]}));
- $('cmp').innerHTML=DV.map(function(d,k){var a=T[k];return'<div class="cmp"><span>'+d.n+'</span><div class="cb">'+a.map(function(v,i){return'<i style="width:'+v/tm*100+'%;background:'+C[i]+'"></i>'}).join('')+'</div><b>'+num(a[0]+a[1]+a[2],1)+' kWh</b></div>'}).join('');
+ $('cmp').innerHTML=DV.map(function(d,k){var a=T[k],s=a[0]+a[1]+a[2];return'<div class="cmp"><div class="h"><span>'+d.n+'</span><span class="mut">'+Math.round((a[0]+a[1])/s*100)+' % eigener Strom</span></div><div class="cb">'+a.map(function(v,i){return'<i style="width:'+v/(tm*1.05)*100+'%;background:'+C[i]+'"></i>'}).join('')+'</div><div class="cl">'+a.map(function(v,i){return v>0?'<span><i style="background:'+C[i]+'"></i>'+N[i]+' '+num(v,1)+' kWh</span>':''}).join('')+'<b>Summe '+num(s,1)+' kWh</b></div></div>'}).join('');
  var w=DV[0],mm=money(w.E,w.S,q);$('n1').textContent='Waschmaschine fertig';
- $('n2').textContent=num(w.E,2)+' kWh · '+eur(mm.c)+' · '+Math.round((w.S[0]+w.S[1])*100)+' % eigener Strom (gespart: '+eur(mm.s)+')'}
+ $('n2').textContent=num(w.E,2)+' kWh · '+eur(mm.c)+' · '+Math.round((w.S[0]+w.S[1])*100)+' % eigener Strom (gespart: '+eur(mm.s)+')';$('n3').textContent='Gesendet an: '+(NS.length?NS.join(', '):'kein Dienst ausgewählt');applyOrder()}
 document.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
  if(b.dataset.r){per=b.dataset.r;render()}else if(b.dataset.d!==undefined){ds=+b.dataset.d;render()}});
 $('tabs').onclick=function(e){var b=e.target.closest('button');if(!b)return;this.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b);$(x.dataset.p).hidden=x!==b})};
 ['pp','pf','bc','pmb','pme','psb','pse','fc'].forEach(function(i){$(i).oninput=render;$(i).onchange=render});
-render();
+var NOTS=['notify.mobile_app_pixel','notify.mobile_app_ipad','notify.telegram_familie','notify.alexa_media_kueche','notify.persistent_notification'],NS=['notify.mobile_app_pixel','notify.mobile_app_ipad'];
+function renderN(){$('nopt').innerHTML=NOTS.map(function(s){return'<label><input type="checkbox" value="'+s+'"'+(NS.indexOf(s)>=0?' checked':'')+'> '+s+'</label>'}).join('');$('nsum').textContent=NS.length?NS.join(', '):'Keine ausgewählt'}
+$('nopt').onchange=function(){NS=[].slice.call(this.querySelectorAll('input:checked')).map(function(x){return x.value});renderN();render()};
+var LAY={sec:['ban','tl','all','ch','cm'],dev:['0','1','2']},DEF=JSON.stringify(LAY),edit=false,drag=null;
+try{var sv0=JSON.parse(localStorage.getItem('gs_layout')||'null');if(sv0&&sv0.sec&&sv0.dev)LAY=sv0}catch(x){}
+function saveL(){try{localStorage.setItem('gs_layout',JSON.stringify(LAY))}catch(x){}}
+function applyOrder(){['sec','dev'].forEach(function(g){LAY[g].forEach(function(id,i){var e=document.querySelector('.blk[data-g="'+g+'"][data-id="'+id+'"]');if(!e)return;e.style.order=i;e.draggable=edit;
+ var m=e.querySelector(':scope>.mv');if(edit&&!m){m=document.createElement('div');m.className='mv';m.innerHTML='<span>⠿</span><button data-mv="-1" data-g="'+g+'" data-id="'+id+'">'+(g==='dev'?'◀':'▲')+'</button><button data-mv="1" data-g="'+g+'" data-id="'+id+'">'+(g==='dev'?'▶':'▼')+'</button>';e.appendChild(m)}if(!edit&&m)m.remove()})})}
+function mvTo(g,id,to){var a=LAY[g],f=a.indexOf(id),t2=a.indexOf(to);if(f<0||t2<0||f===t2)return;a.splice(f,1);a.splice(t2,0,id);saveL();applyOrder()}
+$('ed').onclick=function(){edit=!edit;document.body.classList.toggle('edit',edit);this.textContent=edit?'✓ Fertig':'✏️ Anpassen';$('rs').hidden=!edit;applyOrder()};
+$('rs').onclick=function(){LAY=JSON.parse(DEF);saveL();applyOrder()};
+document.addEventListener('click',function(e){var b=e.target.closest('[data-mv]');if(!b)return;var a=LAY[b.dataset.g],i=a.indexOf(b.dataset.id),j=i+ +b.dataset.mv;if(j<0||j>=a.length)return;var s=a[i];a[i]=a[j];a[j]=s;saveL();applyOrder()});
+document.addEventListener('dragstart',function(e){var b=edit&&e.target.closest&&e.target.closest('.blk');if(!b)return;drag=[b.dataset.g,b.dataset.id];e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain','x');e.stopPropagation()});
+document.addEventListener('dragover',function(e){if(drag&&e.target.closest&&e.target.closest('.blk[data-g="'+drag[0]+'"]'))e.preventDefault()});
+document.addEventListener('drop',function(e){if(!drag)return;var b=e.target.closest('.blk[data-g="'+drag[0]+'"]');e.preventDefault();if(b)mvTo(drag[0],drag[1],b.dataset.id);drag=null});
+document.addEventListener('dragend',function(){drag=null});
+renderN();render();
 </script></main></body></html>

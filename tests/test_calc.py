@@ -40,3 +40,10 @@ def test_free_solar():
     assert calc.free_solar(3000, 1200) == 1800
     assert calc.free_solar(1000, 1500) == 0
     assert calc.free_solar(1000, -50) == 1000
+
+
+def test_normalize_services():
+    assert calc.normalize_services(None) == []
+    assert calc.normalize_services("notify.mobile_app_pixel") == [("notify", "mobile_app_pixel")]
+    assert calc.normalize_services("mobile_app_pixel") == [("notify", "mobile_app_pixel")]
+    assert calc.normalize_services(["notify.a", " notify.b ", "notify.a", ""]) == [("notify", "a"), ("notify", "b")]

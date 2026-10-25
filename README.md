@@ -11,13 +11,15 @@ Vorschau: `docs/vorschau.html` im Browser öffnen (Beispieldaten).
 - **Durchläufe** werden automatisch erkannt: Kosten, Energie und Eigenanteil des letzten Durchlaufs sowie Durchschnitt
 - **Speicherkosten der Batterie** einstellbar (0 = Batteriestrom gilt als kostenlos)
 - **Startempfehlung** („Jetzt starten“, „Teilweise Solar“, „Besser warten“) aus der aktuellen Solarleistung oder einem Solarprognose-Sensor
-- **Meldung am Ende eines Durchlaufs** über einen Benachrichtigungsdienst, zusätzlich als Ereignis `geraetestrom_run_finished` für eigene Automationen
+- **Meldung am Ende eines Durchlaufs** über einen oder mehrere Benachrichtigungsdienste (Auswahlmenü), zusätzlich als Ereignis `geraetestrom_run_finished` für eigene Automationen
+- **Verschiebbare Komponenten:** „Anpassen“ in der Seite, dann per Drag & Drop oder Pfeiltasten anordnen, wird pro Benutzer gespeichert
+- Beschriftete Balkendiagramme mit Legende, Achsenwerten und Summen
 - Bezugspreis und Einspeisevergütung wahlweise per Sensor oder manuell
 - Werte bleiben nach einem Neustart erhalten
 
 ## Installation über HACS
 1. HACS → ⋮ → **Benutzerdefinierte Repositories**
-2. URL dieses Repos eintragen, Kategorie **Integration**
+2. `https://github.com/Maddog3010/geraetestrom` eintragen, Kategorie **Integration**
 3. „Gerätestrom“ installieren, Home Assistant neu starten
 4. **Einstellungen → Geräte & Dienste → Integration hinzufügen → Gerätestrom**
 
@@ -44,5 +46,5 @@ Siehe [CHANGELOG.md](CHANGELOG.md).
 ## Entwicklung
 `pytest` prüft die Rechenfunktionen (`calc.py`). Der Workflow „Validate“ prüft HACS und hassfest.
 
-## Vor dem Hochladen
-`DEIN_GITHUB_NAME` in `manifest.json` und `LICENSE` ersetzen. Für HACS braucht das Repo ein GitHub-Release (z. B. `v1.3.0`).
+## Veröffentlichen
+Repository: `https://github.com/Maddog3010/geraetestrom`. Für HACS braucht das Repo ein GitHub-Release (z. B. `v1.4.0`).
