@@ -25,6 +25,13 @@ def _schema(d: dict, with_name: bool) -> vol.Schema:
     s[vol.Required(CONF_PRICE, default=d.get(CONF_PRICE, 0.32))] = num
     s[vol.Optional(CONF_FEED_ENT, description=sug(CONF_FEED_ENT))] = ent
     s[vol.Required(CONF_FEED, default=d.get(CONF_FEED, 0.08))] = num
+    s[vol.Required(CONF_BAT_COST, default=d.get(CONF_BAT_COST, 0.0))] = num
+    s[vol.Optional(CONF_FORECAST, description=sug(CONF_FORECAST))] = ent
+    s[vol.Optional(CONF_NOTIFY, description=sug(CONF_NOTIFY))] = str
+    s[vol.Required(CONF_RUN_W, default=d.get(CONF_RUN_W, 20))] = selector.NumberSelector(
+        selector.NumberSelectorConfig(min=1, max=500, step=1, mode=selector.NumberSelectorMode.BOX, unit_of_measurement="W"))
+    s[vol.Required(CONF_RUN_MIN, default=d.get(CONF_RUN_MIN, 5))] = selector.NumberSelector(
+        selector.NumberSelectorConfig(min=1, max=120, step=1, mode=selector.NumberSelectorMode.BOX, unit_of_measurement="min"))
     return vol.Schema(s)
 
 
@@ -46,7 +53,7 @@ class GeraetOptions(config_entries.OptionsFlow):
     async def async_step_init(self, user_input=None):
         d = {**self.config_entry.data, **self.config_entry.options}
         if user_input is not None:
-            for k in OPTIONAL_ENTITIES:  # leeres Feld = manueller Wert gilt
+            for k in OPTIONAL_KEYS:  # leeres Feld = Standardverhalten
                 user_input.setdefault(k, None)
             return self.async_create_entry(title="", data=user_input)
         return self.async_show_form(step_id="init", data_schema=_schema(d, False))
