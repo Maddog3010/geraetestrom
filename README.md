@@ -46,5 +46,8 @@ Siehe [CHANGELOG.md](CHANGELOG.md).
 ## Entwicklung
 `pytest` prüft die Rechenfunktionen (`calc.py`). Der Workflow „Validate“ prüft HACS und hassfest.
 
+## Unterstützen
+Gefällt dir die Integration? Über Paypal (https://www.paypal.com/pool/9tOpz2RD9R?sr=wccr) kannst du die Weiterentwicklung unterstützen. Danke!
+
 ## Veröffentlichen
 Repository: `https://github.com/Maddog3010/geraetestrom`. Für HACS braucht das Repo ein GitHub-Release (z. B. `v1.4.0`).
