@@ -35,12 +35,29 @@ td:first-child,th:first-child{text-align:left}.sav{color:var(--sav)}.run{margin-
 .row{display:grid;gap:4px;margin-bottom:12px;break-inside:avoid}.row label{font-weight:600}.row small{display:block}
 .push{display:flex;gap:10px;background:var(--bg);border:1px solid var(--ln);border-radius:16px;padding:12px;max-width:380px}
 .ico{width:38px;height:38px;border-radius:10px;background:var(--bat);color:#fff;display:grid;place-items:center;font-size:20px;flex:none}
+
+.ph{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.logo{width:54px;height:54px;border-radius:16px;background:linear-gradient(135deg,#3dcba8,#2a7f86);display:grid;place-items:center;font-size:26px;flex:none;box-shadow:0 6px 18px #2a7f8644}
+.ph h1{margin:0;font-size:24px}.ph .mut{font-size:14px}
+.ban{position:relative;overflow:hidden;border-radius:28px;padding:26px 30px;margin-bottom:12px;color:#fff;background:radial-gradient(120% 150% at 85% -10%,#52b8a8 0%,#2a7f86 30%,#1b4a5a 62%,#142f3b 100%);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ban .lb{display:flex;align-items:center;gap:8px;font-size:15px;opacity:.92}
+.ban .big2{font-size:66px;font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-top:8px}.ban .big2 span{font-size:26px;font-weight:600;margin-left:8px}
+.ban .dt{opacity:.85}.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.pills span{background:#ffffff1f;border-radius:99px;padding:9px 16px;font-size:14px}
+.ban svg{flex:none}
+@media (max-width:620px){.ban{padding:20px}.ban .big2{font-size:50px}.ban svg{width:92px;height:auto;align-self:flex-start}.pills span{padding:7px 12px;font-size:13px}}
+.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}@media (max-width:760px){.tl{grid-template-columns:1fr 1fr}}
+.tl .card{margin:0;border-left:4px solid var(--c);border-radius:18px;padding:12px 14px}.tl .v{font-size:26px;font-weight:800;line-height:1.2}.tl .v small{font-size:13px;font-weight:400;color:var(--mut)}
+.ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;flex:none}
+.dev{display:flex;align-items:center;gap:12px}.dev b{font-size:18px}
+.st{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mut)}.st i{width:9px;height:9px;border-radius:50%;background:var(--bat);display:inline-block}
 [hidden]{display:none!important}
 </style></head><body><main>
-<h1>Gerätestrom</h1>
+<div class="ph"><div class="logo">⚡</div><div><h1>Gerätestrom</h1><div class="mut">Stromherkunft, Kosten und Ersparnis pro Gerät</div></div></div>
 <div class="tabs" id="tabs"><button class="on" data-p="a">Übersicht</button><button data-p="b">Einrichtung</button></div>
 
-<section id="a"><div class="all" id="all"></div>
+<section id="a"><div class="ban"><div><div class="lb">⚡ Heute gespart (geschätzt)</div><div class="big2" id="bh"></div><div class="dt" id="bd"></div><div class="pills" id="bp"></div></div><svg viewBox="0 0 220 200" width="200" height="182" aria-hidden="true"><rect x="14" y="8" width="140" height="122" rx="24" fill="#fff"/><rect x="26" y="20" width="116" height="98" rx="15" fill="#1b3a46"/><circle cx="84" cy="69" r="37" fill="#e6f6f3"/><circle cx="84" cy="69" r="26" fill="#4fb3a5"/><path d="M60 71q12-11 24 0t24 0" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="38" cy="34" r="4" fill="#f5b83d"/><circle cx="188" cy="38" r="17" fill="#f5b83d"/><g stroke="#f5b83d" stroke-width="4" stroke-linecap="round"><path d="M188 8v8M188 60v8M158 38h8M210 38h8M167 17l6 6M203 53l6 6M209 17l-6 6M173 53l-6 6"/></g><rect x="22" y="146" width="150" height="42" rx="21" fill="#fff"/><g fill="#1b3a46"><rect x="40" y="156" width="14" height="22" rx="7"/><rect x="66" y="156" width="14" height="22" rx="7"/><rect x="92" y="156" width="14" height="22" rx="7"/><rect x="118" y="156" width="14" height="22" rx="7"/></g><rect x="144" y="156" width="14" height="22" rx="7" fill="#3ecf9b"/><circle cx="194" cy="170" r="9" fill="#f5b83d"/></svg></div>
+<div class="tl" id="tl"></div>
+<div class="all" id="all"></div>
 <div class="card"><b id="ct"></b><div class="mut" id="cs"></div>
 <div class="chips" id="pc"></div><div class="chips" id="dc"></div><div class="bars" id="bars"></div></div>
 <div class="card"><b>Vergleich der Geräte</b><div class="mut" id="cm"></div><div id="cmp"></div></div></section>
@@ -61,9 +78,9 @@ td:first-child,th:first-child{text-align:left}.sav{color:var(--sav)}.run{margin-
 var C=['var(--sol)','var(--bat)','var(--net)'],N=['Solar','Batterie','Netz'],$=function(i){return document.getElementById(i)};
 function eur(x){return x.toFixed(2).replace('.',',')+' €'}
 function num(x,d){return x.toLocaleString('de-DE',{maximumFractionDigits:d||0})}
-var DV=[{n:'Waschmaschine',W:2100,E:1.1,S:[.6,.25,.15],d:1.1,m:18.4,t:162,r:48},
-{n:'Trockner',W:2600,E:1.8,S:[.4,.2,.4],d:0,m:24.2,t:205,r:41},
-{n:'Spülmaschine',W:1800,E:.9,S:[.1,.5,.4],d:.9,m:14.6,t:118,r:63}];
+var DV=[{n:'Waschmaschine',W:2100,E:1.1,S:[.6,.25,.15],d:1.1,m:18.4,y:120,t:162,r:48,rt:1,ic:'🧺',ac:'#3dcba8'},
+{n:'Trockner',W:2600,E:1.8,S:[.4,.2,.4],d:0,m:24.2,y:150,t:205,r:41,rt:0,ic:'♨️',ac:'#e8a23c'},
+{n:'Spülmaschine',W:1800,E:.9,S:[.1,.5,.4],d:.9,m:14.6,y:90,t:118,r:63,rt:1,ic:'🍽️',ac:'#9b8cf0'}];
 var per='7',ds=-1,PB={h:'Heute','7':'7 Tage',m:'Monat',j:'Jahr',g:'Gesamt'},PT={h:'Heute','7':'Letzte 7 Tage',m:'Letzter Monat',j:'Letzte 12 Monate',g:'Gesamt'};
 var DAYS=['Mo','Di','Mi','Do','Fr','Sa','So'],MON=['Nov','Dez','Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt'];
 function pr(m,i,s){var se=$(m).value==='Sensor';$(i).hidden=se;$(s).hidden=!se;return(se?+$(s).value:+$(i).value)||0}
@@ -80,11 +97,17 @@ function render(){var q=P(),est=+$('fc').value;
   S.forEach(function(s,i){h+='<circle cx="48" cy="48" r="'+R+'" fill="none" stroke="'+C[i]+'" stroke-width="12" stroke-dasharray="'+(s*L-2)+' '+L+'" stroke-dashoffset="'+(-o)+'"/>';o+=s*L});
   var oth=DV.reduce(function(a,x){return a+(x===d?0:x.W*x.S[0])},0),cv=Math.min(Math.max(est-oth,0)/d.W,1)*100,ad=cv>=70?['Jetzt starten','ok']:cv>=30?['Teilweise Solar','mid']:['Besser warten','no'];
   var row=function(l,k){var m=money(k,S,q);return'<tr><td>'+l+'</td><td>'+eur(m.c)+'</td><td class="sav">'+eur(m.s)+'</td></tr>'},rc=money(d.E,S,q).c;
-  return'<div class="card"><div class="hd"><b>'+d.n+'</b><span class="pill '+ad[1]+'" title="Solardeckung ca. '+Math.round(cv)+' %">'+ad[0]+'</span></div>'
+  return'<div class="card"><div class="hd"><div class="dev"><div class="ic" style="background:'+d.ac+'">'+d.ic+'</div><div><b>'+d.n+'</b><div class="st"><i></i>läuft · '+num(d.W)+' W</div></div></div><span class="pill '+ad[1]+'" title="Solardeckung ca. '+Math.round(cv)+' %">'+ad[0]+'</span></div>'
   +'<div class="hero"><div class="donut"><svg width="96" height="96" viewBox="0 0 96 96">'+h+'</svg><div class="c"><b>'+Math.round((S[0]+S[1])*100)+'</b><span>% eigen</span></div></div><div class="leg">'
   +S.map(function(s,i){return'<div><span class="dot" style="background:'+C[i]+'"></span><span><strong>'+num(d.W*s)+' W</strong><span class="mut">'+N[i]+'</span></span></div>'}).join('')+'</div></div>'
   +'<table><tr><th></th><th>Kosten</th><th>Ersparnis</th></tr>'+row('Heute',d.d)+row('Monat',d.m)+row('Gesamt',d.t)+'</table>'
   +'<div class="mut run">Letzter Durchlauf: '+num(d.E,2)+' kWh · '+eur(rc)+' · '+Math.round((S[0]+S[1])*100)+' % eigener Strom<br>Ø '+eur(rc*1.04)+' pro Durchlauf ('+d.r+' Durchläufe)</div></div>'}).join('');
+ var sv=function(k){return DV.reduce(function(a,d){return a+money(d[k],d.S,q).s},0)},co=function(k){return DV.reduce(function(a,d){return a+money(d[k],d.S,q).c},0)};
+ $('bh').innerHTML=sv('d').toFixed(2).replace('.',',')+'<span>€</span>';
+ $('bd').textContent=new Date().toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'});
+ var rt=DV.reduce(function(a,d){return a+d.rt},0),kd=DV.reduce(function(a,d){return a+d.d},0);
+ $('bp').innerHTML='<span>🧺 '+rt+' Durchläufe heute</span><span>🔌 '+DV.length+' von '+DV.length+' Geräten laufen</span><span>⚡ '+num(kd,1)+' kWh heute</span>';
+ $('tl').innerHTML=[['Heute','d','#3ecf9b','📅'],['Monat','m','#5b8def','🗓️'],['Jahr','y','#9b7bf0','📆'],['Gesamt','t','#ee6fb0','♾️']].map(function(x){return'<div class="card" style="--c:'+x[2]+'"><div class="mut">'+x[3]+' '+x[0]+'</div><div class="v sav">'+eur(sv(x[1]))+' <small>gespart</small></div><div class="mut">Kosten '+eur(co(x[1]))+'</div></div>'}).join('');
  var G=DV.map(gen),n=G[0].length,tot=[],T=DV.map(function(){return[0,0,0]});
  for(var i=0;i<n;i++){var v=[0,0,0];DV.forEach(function(d,k){if(ds<0||ds===k)G[k][i].v.forEach(function(x,j){v[j]+=x});G[k][i].v.forEach(function(x,j){T[k][j]+=x})});tot.push({v:v,l:G[0][i].l})}
  var sm=0,ow=0;tot.forEach(function(x){sm+=x.v[0]+x.v[1]+x.v[2];ow+=x.v[0]+x.v[1]});

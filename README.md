@@ -6,7 +6,7 @@ Vorschau: `docs/vorschau.html` im Browser öffnen (Beispieldaten).
 
 ## Funktionen
 - Einrichtung per Oberfläche mit Auswahllisten für alle Sensoren, mehrere Geräte möglich
-- Eigene Seite **Gerätestrom** in der Seitenleiste: Karten pro Gerät (Desktop nebeneinander, Mobil untereinander), Verlauf (Heute, 7 Tage, Monat, Jahr, Gesamt) wahlweise für alle oder ein Gerät, Vergleich der Geräte
+- Eigene Seite **Gerätestrom** in der Seitenleiste: Banner „Heute gespart“, Kacheln für Heute, Monat, Jahr und Gesamt, Karten pro Gerät (Desktop nebeneinander, Mobil untereinander), Verlauf (Heute, 7 Tage, Monat, Jahr, Gesamt) wahlweise für alle oder ein Gerät, Vergleich der Geräte
 - **Heute, Monat und Gesamt** für Kosten und Ersparnis
 - **Durchläufe** werden automatisch erkannt: Kosten, Energie und Eigenanteil des letzten Durchlaufs sowie Durchschnitt
 - **Speicherkosten der Batterie** einstellbar (0 = Batteriestrom gilt als kostenlos)
@@ -45,4 +45,4 @@ Siehe [CHANGELOG.md](CHANGELOG.md).
 `pytest` prüft die Rechenfunktionen (`calc.py`). Der Workflow „Validate“ prüft HACS und hassfest.
 
 ## Vor dem Hochladen
-`DEIN_GITHUB_NAME` in `manifest.json` und `LICENSE` ersetzen. Für HACS braucht das Repo ein GitHub-Release (z. B. `v1.2.1`).
+`DEIN_GITHUB_NAME` in `manifest.json` und `LICENSE` ersetzen. Für HACS braucht das Repo ein GitHub-Release (z. B. `v1.3.0`).
