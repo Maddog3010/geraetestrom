@@ -15,7 +15,7 @@ Zeigt pro Gerät (Waschmaschine, Trockner, Spülmaschine …), **woher der Strom
 ## Vorschau
 
 <p align="center"><img src="https://raw.githubusercontent.com/Maddog3010/geraetestrom/main/docs/images/uebersicht.png" alt="Übersicht mit Banner, Kacheln und Gerätekarten" width="100%"></p>
-<p align="center"><em>Übersicht: Heute gespart, Kacheln für Heute, Monat, Jahr und Gesamt, eine Karte pro Gerät</em></p>
+<p align="center"><em>Übersicht: Heute gespart, Kacheln mit Mini-Verlauf, Energiefluss und eine Karte pro Gerät</em></p>
 
 <p align="center"><img src="https://raw.githubusercontent.com/Maddog3010/geraetestrom/main/docs/images/verlauf.png" alt="Verlauf und Vergleich der Geräte" width="100%"></p>
 <p align="center"><em>Verlauf der letzten 7 Tage und Vergleich der Geräte, beschriftet nach Solar, Batterie und Netz</em></p>
@@ -23,13 +23,17 @@ Zeigt pro Gerät (Waschmaschine, Trockner, Spülmaschine …), **woher der Strom
 <p align="center"><img src="https://raw.githubusercontent.com/Maddog3010/geraetestrom/main/docs/images/einrichtung.png" alt="Einrichtung mit Sensorauswahl" width="100%"></p>
 <p align="center"><em>Einrichtung per Oberfläche mit Auswahllisten für alle Sensoren</em></p>
 
+<p align="center"><img src="https://raw.githubusercontent.com/Maddog3010/geraetestrom/main/docs/images/anpassen.png" alt="Anpassen: verschieben, ein- und ausblenden" width="70%"></p>
+<p align="center"><em>Anpassen: Bereiche verschieben, mit dem Auge ein- oder ausblenden</em></p>
+
 > Die Bilder zeigen Beispieldaten.
 
 ## Funktionen
 - Einrichtung per Oberfläche mit Auswahllisten für alle Sensoren, mehrere Geräte möglich
 - **Erste und zweite Solarleistung** (z. B. zwei Wechselrichter), **Batterie-Entladung und -Ladung** sowie **Netzbezug und Netzeinspeisung**
 - Eigene Seite **Gerätestrom** in der Seitenleiste: Banner „Heute gespart“, Kacheln für Heute, Monat, Jahr und Gesamt, Karten pro Gerät (Desktop nebeneinander, Mobil untereinander), Verlauf (Heute, 7 Tage, Monat, Jahr, Gesamt) für alle oder ein Gerät, Vergleich der Geräte
-- **Verschiebbare Komponenten:** „Anpassen“, dann per Drag & Drop oder Pfeiltasten anordnen, wird pro Benutzer gespeichert
+- **Energiefluss-Grafik** (Bänder von Solar, Batterie und Netz zu jedem Gerät) und **Mini-Verläufe** in Kacheln und Gerätekarten
+- **Verschieben, ein- und ausblenden:** „Anpassen“, dann Bereiche und Gerätekarten per Drag & Drop oder Pfeiltasten anordnen und mit dem Auge ein- oder ausblenden, wird pro Benutzer gespeichert
 - **Heute, Monat und Gesamt** für Kosten und Ersparnis
 - **Durchläufe** werden automatisch erkannt: Kosten, Energie und Eigenanteil des letzten Durchlaufs sowie Durchschnitt
 - **Speicherkosten der Batterie** einstellbar (0 = Batteriestrom gilt als kostenlos)
@@ -42,6 +46,14 @@ Zeigt pro Gerät (Waschmaschine, Trockner, Spülmaschine …), **woher der Strom
 1. Auf den Knopf **In HACS öffnen** klicken, oder in HACS → ⋮ → **Benutzerdefinierte Repositories** die URL `https://github.com/Maddog3010/geraetestrom` mit Kategorie **Integration** eintragen
 2. „Gerätestrom“ installieren und Home Assistant neu starten
 3. **Einstellungen → Geräte & Dienste → Integration hinzufügen → Gerätestrom**
+
+## Anpassen
+Oben rechts auf **Anpassen** tippen. Jeder Bereich (Banner, Kacheln, Energiefluss, Geräte, Verlauf, Vergleich) und jede Gerätekarte bekommt eine Leiste:
+- **Ziehen** am Griff oder **Pfeiltasten** (▲▼ bzw. ◀▶), auch am Handy
+- **Auge** zum Ausblenden. Ausgeblendetes ist im Anpassen-Modus abgedunkelt zu sehen und lässt sich mit dem Auge wieder einblenden
+- **Zurücksetzen** stellt Reihenfolge und Sichtbarkeit wieder her
+
+Die Auswahl wird pro Benutzer gespeichert und gilt auf allen Geräten. Das Ausblenden einer Gerätekarte betrifft nur die Karte, nicht den Energiefluss oder die Auswertungen.
 
 ## Sensoren auswählen
 | Feld | Bedeutung |
@@ -84,4 +96,4 @@ Siehe [CHANGELOG.md](CHANGELOG.md).
 `pytest` prüft die Rechenfunktionen (`calc.py`). Der Workflow „Validate“ prüft HACS und hassfest.
 
 ## Veröffentlichen
-Repository: `https://github.com/Maddog3010/geraetestrom`. Für HACS braucht das Repo ein GitHub-Release (z. B. `v1.5.0`). Das Vorschaubild für Links (Settings → General → Social preview) ist `docs/images/social-banner.png`.
+Repository: `https://github.com/Maddog3010/geraetestrom`. Für HACS braucht das Repo ein GitHub-Release (z. B. `v1.6.1`). Das Vorschaubild für Links (Settings → General → Social preview) ist `docs/images/social-banner.png`.

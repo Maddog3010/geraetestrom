@@ -2,6 +2,19 @@
 
 Alle wichtigen Änderungen an Gerätestrom. Format angelehnt an [Keep a Changelog](https://keepachangelog.com/de/), Versionierung nach [SemVer](https://semver.org/lang/de/).
 
+## [1.6.1] – 2026-10-25
+### Hinzugefügt
+- **Ein- und Ausblenden:** Im Anpassen-Modus hat jeder verschiebbare Bereich und jede Gerätekarte ein Auge. Ausgeblendetes verschwindet aus der Ansicht, bleibt im Anpassen-Modus abgedunkelt sichtbar (mit „ausgeblendet“) und lässt sich jederzeit wieder einblenden. Wird mit der Reihenfolge pro Benutzer gespeichert, „Zurücksetzen“ stellt beides wieder her
+- Hinweis, wenn alle Bereiche ausgeblendet sind
+- README: neuer Abschnitt „Anpassen“ mit Bild
+
+## [1.6.0] – 2026-10-25
+### Hinzugefügt
+- **Energiefluss-Grafik:** Bänder von Solar, Batterie und Netz zu jedem Gerät. Die Breite zeigt die Leistung, die Bewegung zeigt den Fluss. Eigener, verschiebbarer Bereich zwischen Kacheln und Gerätekarten. Die Animation entfällt bei der Geräteeinstellung „Bewegung reduzieren“
+- **Mini-Verläufe:** Kleine Verlaufsgrafiken in den vier Kacheln (Ersparnis nach Stunde, Tag und Monat) und in jeder Gerätekarte (Energie der letzten 7 Tage), aus den Langzeitstatistiken von Home Assistant
+### Geändert
+- Die README-Bilder zeigen den neuen Stand, die Vorschau enthält den Tab „Neuigkeiten“ mit allen Funktionen und Beispielbildern
+
 ## [1.5.0] – 2026-10-25
 ### Hinzugefügt
 - **Zweite Solarleistung** (optional): wird zur ersten addiert, z. B. zweiter Wechselrichter
