@@ -1,3 +1,6 @@
+const VERSION = "1.6.2";
+const EOL_URL = "https://github.com/Maddog3010/ha-fenster-heizung";
+const EOL_KEY = "geraetestrom_eol_" + VERSION;
 const SRC = ["solar", "battery", "grid"];
 const COL = { solar: "#e9a413", battery: "#13a97b", grid: "#6f78e8" };
 const NAME = { solar: "Solar", battery: "Batterie", grid: "Netz" };
@@ -51,6 +54,7 @@ class GeraetstromPanel extends HTMLElement {
     const r = this.attachShadow({ mode: "open" });
     this._per = "7"; this._ds = ""; this._sig = ""; this._rows = []; this._tl = 0; this._busy = false; this._dev = {};
     this._sp = { dev: {}, tiles: {} }; this._ts = 0; this._sbusy = false;
+    this._eol = true; try { this._eol = localStorage.getItem(EOL_KEY) !== "1"; } catch (_) {}
     this._edit = false; this._lay = {}; this._ids = { sec: [], dev: [] }; this._drag = null; this._lload = false;
     r.addEventListener("dragstart", (e) => {
       const b = this._edit && e.target.closest?.(".blk");
@@ -72,6 +76,7 @@ class GeraetstromPanel extends HTMLElement {
       if (!b) return;
       if (b.dataset.mv) this._step(b.dataset.g, b.dataset.id, +b.dataset.mv);
       else if (b.dataset.eye) this._toggle(b.dataset.g, b.dataset.id);
+      else if (b.id === "eolx") { this._eol = false; try { localStorage.setItem(EOL_KEY, "1"); } catch (_) {} this._draw(); }
       else if (b.id === "ed") { this._edit = !this._edit; this._draw(); }
       else if (b.id === "rs") { this._lay = {}; this._saveLayout(); this._draw(); }
       else if (b.dataset.r) { this._per = b.dataset.r; this._rows = []; this._draw(); this._load(); }
@@ -304,6 +309,8 @@ class GeraetstromPanel extends HTMLElement {
     let main = this._ids.sec.map((id) => this._wrap("sec", id, sec[id])).join("");
     if (!main) main = '<div class="card mut">Alle Bereiche sind ausgeblendet. Mit „Anpassen“ lassen sie sich wieder einblenden.</div>';
 
+    const eolBanner = `<div class="eol" role="status"><span class="eol-i" aria-hidden="true">i</span><p>Die Entwicklung von Gerätestrom wurde mit Version ${VERSION} eingestellt. Das Projekt ist jetzt in <a href="${EOL_URL}" target="_blank" rel="noopener">„Strom &amp; Wärme“</a> integriert.</p><button id="eolx" aria-label="Hinweis schließen">×</button></div>`;
+    const eolMark = `<div class="eolm" aria-hidden="true"><div><b>ENTWICKLUNG<br>EINGESTELLT</b><span>Weiter in „Strom &amp; Wärme“</span></div></div>`;
     this.shadowRoot.innerHTML = `<style>
       :host{display:block;background:var(--primary-background-color);color:var(--primary-text-color);min-height:100%}
       .bar{display:flex;align-items:center;padding:6px 8px}ha-icon{--mdc-icon-size:20px;vertical-align:-5px}
@@ -341,11 +348,15 @@ class GeraetstromPanel extends HTMLElement {
       .lgd{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:13px}.lgd i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
       .hid{display:flex;flex-direction:column;align-items:center;gap:1px;margin-top:3px}.hid span{font-size:10px;color:var(--secondary-text-color);white-space:nowrap}.hid i{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:3px}.hid2{display:flex;flex-wrap:wrap;gap:2px 12px;margin-top:4px}.hid2 span{font-size:11px;color:var(--secondary-text-color)}.hid2 i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px}.cl{display:flex;flex-wrap:wrap;align-items:center;gap:2px 14px;margin-top:6px;font-size:12px}.cl span{white-space:nowrap}.cl i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px}.cl b{margin-left:auto;white-space:nowrap}.cmp{margin-top:12px;font-size:14px}.cmp .h{display:flex;justify-content:space-between;gap:8px;margin-bottom:5px}.cmp .h span:first-child{font-weight:600}
       .cb{display:flex;align-items:center;height:22px;border-radius:11px;overflow:hidden;background:var(--divider-color,#8883)}.cb i{height:100%}.cb .sm{padding-left:8px;font-size:12px;font-weight:600;white-space:nowrap}
+      .eol{display:flex;align-items:center;gap:16px;padding:16px 20px;color:#fff;font-size:16px;line-height:1.4;background:linear-gradient(90deg,#9a4d20,#c7782d)}.eol p{margin:0;flex:1}.eol a{color:#fff;font-weight:700;text-decoration:underline}
+      .eol-i{flex:none;width:26px;height:26px;border-radius:7px;background:#6f8fc9;display:grid;place-items:center;font-weight:700}.eol button{flex:none;background:none;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:4px 8px}.eol button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+      .eolm{position:fixed;inset:0;display:grid;place-items:center;pointer-events:none;z-index:5;overflow:hidden}.eolm>div{transform:rotate(-17deg);border:5px solid rgba(190,130,70,.28);border-radius:18px;padding:20px 40px;text-align:center;color:rgba(190,130,70,.28)}
+      .eolm b{display:block;font-size:clamp(32px,7vw,84px);font-weight:900;letter-spacing:2px;line-height:1.05}.eolm span{display:block;font-size:clamp(14px,2vw,24px);font-weight:600;margin-top:10px;color:rgba(190,130,70,.28)}
     </style>
-    <div class="bar"><ha-menu-button></ha-menu-button></div>
-    <div class="w${this._edit ? " edit" : ""}"><div class="ph"><div class="logo"><ha-icon icon="mdi:flash"></ha-icon></div><div><h1>Gerätestrom</h1><div class="mut">Stromherkunft, Kosten und Ersparnis pro Gerät</div></div>
+    <div class="bar"><ha-menu-button></ha-menu-button></div>${this._eol ? eolBanner : ""}
+    <div class="w${this._edit ? " edit" : ""}"><div class="ph"><div class="logo"><ha-icon icon="mdi:flash"></ha-icon></div><div><h1>Gerätestrom</h1><div class="mut">Stromherkunft, Kosten und Ersparnis pro Gerät · Version ${VERSION}</div></div>
       <div class="acts">${this._edit ? '<button id="rs">Zurücksetzen</button>' : ""}<button id="ed">${this._edit ? "✓ Fertig" : "✏️ Anpassen"}</button></div></div>
-    <div class="main">${main}</div></div>`;
+    <div class="main">${main}</div></div>${eolMark}`;
     this._menu = this.shadowRoot.querySelector("ha-menu-button");
     if (this._menu) { this._menu.hass = this._hass; this._menu.narrow = this._narrow; }
   }
